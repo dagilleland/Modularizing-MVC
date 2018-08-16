@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Shipyards.UI.Areas.Fleet.Models.ShipDesign>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommissionedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StandardCrewComplement)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommissionedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StandardCrewComplement)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ShipDesignId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ShipDesignId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ShipDesignId })
+        </td>
+    </tr>
+}
+
+</table>

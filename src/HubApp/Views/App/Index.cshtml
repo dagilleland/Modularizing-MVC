@@ -1,0 +1,103 @@
+﻿@model HubApp.Models.AreaProxy
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>App Proxy</h2>
+<pre>
+@Json.Encode(Model)
+</pre>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Link</th>
+            <th>Description</th>
+            <th>Code</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><a href='/App/Fleet/ShipDesigns/Edit' class='btn btn-info'>First</a></td>
+        <td>Manually constructed</td>
+        <td><pre>&lt;a href=&#39;/App/Fleet/ShipDesigns/Edit&#39; class=&#39;btn btn-info&#39;&gt;First&lt;/a&gt;</pre></td>
+    </tr>
+    <tr>
+        <td>@Html.ActionLink("Second", "Index", "Fleet", new { Area = "Fleet" }, new { })</td>
+        <td>Direct link to the area, no proxy</td>
+        <td><pre>@@Html.ActionLink(&quot;Second&quot;, &quot;Index&quot;, &quot;Fleet&quot;, new { Area = &quot;Fleet&quot; }, new { })</pre></td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Third", "Index", "App", new
+    {
+        AreaName = "Fleet",
+        ControllerName = "Ships",
+        ActionName = "Create"
+    }, new { @class = "btn btn-success"})
+            </td>
+        <td></td>
+        <td><pre>@@Html.ActionLink(&quot;Third&quot;, &quot;Index&quot;, &quot;App&quot;,
+new
+{
+    AreaName = &quot;Fleet&quot;,
+    ControllerName = &quot;Ships&quot;,
+    ActionName = &quot;Create&quot;
+},
+new { @@class = &quot;btn btn-success&quot;})</pre></td>
+    </tr>
+    @if (Model != null)
+    {
+        <tr style="background-color:linen">
+            <td>@Html.ActionLink("Fourth", "Index", "App", Model, new { @class = "btn btn-default" })</td>
+            <td></td>
+            <td><pre>@@Html.ActionLink(&quot;Fourth&quot;, &quot;Index&quot;, &quot;App&quot;, Model,
+new { @@class = &quot;btn btn - default&quot; })</pre></td>
+        </tr>
+        <tr style="background-color:linen">
+            <td>@Html.ActionLink("Fifth", "Index", "App", new { obj = Model }, new { @class = "btn btn-primary" })</td>
+            <td></td>
+            <td><pre>@@Html.ActionLink(&quot;Fifth&quot;, &quot;Index&quot;, &quot;App&quot;, new { obj = Model },
+new { @@class = &quot;btn btn - primary&quot;})</pre></td>
+        </tr>
+        <tr style="background-color:linen">
+            <td>
+                @Html.ActionLink("Sixth", "Index", "App", new
+        {
+            area = Model.AreaName,
+            ctr = Model.ControllerName,
+            act = Model.ActionName
+        }, new { @class = "btn btn-primary"})
+            </td>
+            <td></td>
+            <td><pre>@@Html.ActionLink(&quot;Sixth&quot;, &quot;Index&quot;, &quot;App&quot;, new 
+{
+    area = Model.AreaName,
+    ctr = Model.ControllerName,
+    act = Model.ActionName
+}, new { @@class = &quot;btn btn-primary&quot;})</pre></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Seventh", "Index", "App", new
+        {
+            AreaName = Model.AreaName,
+            ControllerName = Model.ControllerName,
+            ActionName = Model.ActionName
+        }, new { @class = "btn btn-primary"})
+            </td>
+            <td></td>
+            <td><pre>@@Html.ActionLink(&quot;Seventh&quot;, &quot;Index&quot;, &quot;App&quot;, new
+{
+    AreaName = Model.AreaName,
+    ControllerName = Model.ControllerName,
+    ActionName = Model.ActionName
+}, new { @@class = &quot;btn btn-primary&quot;})</pre></td>
+        </tr>
+    }
+    <tr>
+        <td></td>
+        <td></td>
+        <td><pre>@Html.Encode("")</pre></td>
+    </tr>
+</table>
