@@ -10,9 +10,15 @@ using Xunit;
 using System.Web.Mvc.Html;
 using System.Dynamic;
 using IgorO.ExposedObjectProject;
+using Xunit.Extensions;
+using ModularMVC.Specs.TestData;
 
 namespace ModularMVC.Specs
 {
+    // CLEAN: Used for educational purposes only - delete later
+    /// <summary>
+    /// Part of LinkExtensionsTest from https://github.com/aspnet/AspNetWebStack/blob/master/test/System.Web.Mvc.Test/Html/Test/LinkExtensionsTest.cs
+    /// </summary>
     public class Understanding_LinkAction
     {
         private const string AppPathModifier = MvcHelper.AppPathModifier;
