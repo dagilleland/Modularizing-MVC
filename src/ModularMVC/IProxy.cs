@@ -96,8 +96,8 @@ namespace ModularMVC
             dict.Add(TargetController.ToCamelCase(), targetController);
             dict.Add(TargetArea.ToCamelCase(), targetArea);
             if (targetPayload != null)
-                //dict.Add("params", Flatten(targetPayload));
-                dict.Add("params", targetPayload);
+                dict.Add("payload", Flatten(targetPayload));
+            //dict.Add("payload", targetPayload);
             return dict;
         }
         private string Flatten(object obj)
@@ -108,7 +108,7 @@ namespace ModularMVC
             foreach (var pair in dict)
                 kvPairs.Add($"{pair.Key}/{pair.Value}");
             result = string.Join("/", kvPairs);
-            if (!string.IsNullOrWhiteSpace(result)) result = "/" + result;
+            //if (!string.IsNullOrWhiteSpace(result)) result = "/" + result;
             return result;
         }
 

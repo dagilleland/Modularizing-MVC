@@ -184,7 +184,7 @@ namespace ModularMVC.Specs
             var rv = new RouteValueDictionary(givenPayload);
             var actual = Flatten(rv);
 
-            actual.Should().Be("/Power/2500/Duration/4000/Fade/0.025");
+            actual.Should().Be("Power/2500/Duration/4000/Fade/0.025");
         }
         public string Flatten(RouteValueDictionary dict)
         {
@@ -193,7 +193,6 @@ namespace ModularMVC.Specs
             foreach (var pair in dict)
                 kvPairs.Add($"{pair.Key}/{pair.Value}");
             result = string.Join("/", kvPairs);
-            if (!string.IsNullOrWhiteSpace(result)) result = "/" + result;
             return result;
         }
         [Fact]
@@ -216,7 +215,9 @@ namespace ModularMVC.Specs
             });
             // 4) Expectations
             const string expectedUrl = @"App/{targetArea}/{targetController}/{targetAction}/{*params}";
-            string expected = $"<a href=\"{MvcHelper.AppPathModifier}/app/{sut.ProxyController}/{sut.ProxyAction}/{givenArea}/{givenController}/{givenAction}\">{givenLinkText}</a>";
+            string payload = Flatten(new RouteValueDictionary(givenPayload));
+            if (!string.IsNullOrWhiteSpace(payload)) payload = "/" + payload;
+            string expected = $"<a href=\"{MvcHelper.AppPathModifier}/app/{sut.ProxyController}/{sut.ProxyAction}/{givenArea}/{givenController}/{givenAction}{payload}\">{givenLinkText}</a>";
 
             // Act
             var actual = html.ActionLink(givenLinkText, sut.ProxyAction, sut.ProxyController, sut.BuildRouteValues(givenAction, givenController, givenArea, givenPayload), null);
