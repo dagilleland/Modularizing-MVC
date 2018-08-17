@@ -12,11 +12,14 @@ namespace HubApp
     {
         protected void Application_Start()
         {
+            //ModularMVC.GlobalProxy.Instance.Proxy = "App";
             RouteTable.Routes.MapMvcAttributeRoutes();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            MvcApplication.RouteTableRoutes = RouteTable.Routes;
         }
+        public static RouteCollection RouteTableRoutes { get; set; }
     }
 }

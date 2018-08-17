@@ -1,0 +1,66 @@
+﻿@using ModularMVC;
+@model IEnumerable<HubApp.Areas.StarSystem.Models.PlanetaryBody>
+
+<h3>Planet/Index</h3>
+<p>
+    Route Data Values: <span>
+        @foreach (var kvp in ViewBag.RouteInfo)
+        {
+            <text>@kvp.Key / @kvp.Value ::</text>
+        }
+    </span>
+</p>
+<p>
+    Route Data Tokens: <span>
+        @foreach (var kvp in ViewBag.Tokens)
+        {
+            <text>@kvp.Key / @kvp.Value ::</text>
+            if(kvp.Key == "Namespaces" && kvp.Value is string[])
+            {
+                string[] data = kvp.Value as string[];
+                           <span>
+                               (
+                               @foreach(var ns in data)
+                               {
+                                   <text>@ns, </text>
+                               }
+                               )
+                           </span>
+            }
+        }
+    </span>
+</p>
+<blockquote>@Url.Action()</blockquote>
+<p>
+    @Html.ActionLink(GlobalProxy.Instance, "Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Orbit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Orbit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink(GlobalProxy.Instance, "Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("About Page", "About", "Home", new { Area = "" }, null)
+            </td>
+        </tr>
+    }
+
+</table>

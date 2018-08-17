@@ -1,0 +1,22 @@
+﻿@model HubApp.Models.Exploration
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>MVC Route and ActionLink Explorations</h2>
+
+@if(Model == null)
+{
+<div>No model data supplied. So make some: @Html.ActionLink("Add Item", "Create")</div>
+    
+}
+else
+{
+    <div>Model data supplied:</div>
+    if(ViewBag.Json != null)
+    {
+        <pre>@ViewBag.Json</pre>
+    }
+}
+

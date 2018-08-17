@@ -41,6 +41,32 @@ namespace Microsoft.Web.UnitTestUtil
             return htmlHelper;
         }
 
+        public static HtmlHelper<object> GetHtmlHelper(string controllerName, params string[] actionNames)
+        {
+            HttpContextBase httpcontext = GetHttpContext("/app/", null, null);
+            RouteCollection rt = new RouteCollection();
+            rt.Add(new Route("{controller}/{action}/{id}", null) { Defaults = new RouteValueDictionary(new { id = "defaultid" }) });
+            rt.Add("namedroute", new Route("named/{controller}/{action}/{id}", null) { Defaults = new RouteValueDictionary(new { id = "defaultid" }) });
+            RouteData rd = new RouteData();
+            rd.Values.Add("controller", controllerName);
+            foreach(var act in actionNames)
+                rd.Values.Add("action", act);
+
+            ViewDataDictionary vdd = new ViewDataDictionary();
+
+            ViewContext viewContext = new ViewContext()
+            {
+                HttpContext = httpcontext,
+                RouteData = rd,
+                ViewData = vdd
+            };
+            Mock<IViewDataContainer> mockVdc = new Mock<IViewDataContainer>();
+            mockVdc.Setup(vdc => vdc.ViewData).Returns(vdd);
+
+            HtmlHelper<object> htmlHelper = new HtmlHelper<object>(viewContext, mockVdc.Object, rt);
+            return htmlHelper;
+        }
+
         public static HtmlHelper GetHtmlHelper(string protocol, int port)
         {
             HttpContextBase httpcontext = GetHttpContext("/app/", null, null, protocol, port);

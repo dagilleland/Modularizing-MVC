@@ -18,7 +18,11 @@ namespace ModularMVC.Specs
         {
             // Arrange
             string linkText = "Press Button";
-            HtmlHelper htmlHelper = MvcHelper.GetHtmlHelper();
+            ModularMVC.GlobalProxy.Instance.Proxy =
+             //null;
+             "App";
+
+            HtmlHelper htmlHelper = MvcHelper.GetHtmlHelper(controllerName, actionName);
             //FleetAreaRegistration myArea = new FleetAreaRegistration();
             //// Adapted to use ExposedObject
             //// Credits: http://igoro.com/archive/use-c-dynamic-typing-to-conveniently-access-internals-of-an-object/
@@ -26,7 +30,7 @@ namespace ModularMVC.Specs
             //htmlHelper.RouteCollection.LowercaseUrls = true;
 
             // Act
-            MvcHtmlString html = htmlHelper.ActionLink(linkText, actionName, controllerName);
+            MvcHtmlString html = htmlHelper.ActionLink(GlobalProxy.Instance, linkText, actionName);//, controllerName);
 
             // Assert
             Assert.Equal($@"<a href=""{AppPathModifier}/app/{controllerName}/{actionName}"">{linkText}</a>", html.ToHtmlString());

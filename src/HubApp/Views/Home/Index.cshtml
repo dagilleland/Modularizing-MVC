@@ -9,23 +9,83 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-md-12">
+        <details>
+            <summary>Known Routes</summary>
+            @@Url.Action()
+            --&gt;
+            @Url.Action()
+            <br />
+            @@Url.Action("Index")
+            --&gt;
+            @Url.Action("Index")
+            <br />
+            @@Url.Action("About")
+            --&gt;
+            @Url.Action("About")
+            <br />
+            @@Url.Action("Index", "App")
+            --&gt;
+            @Url.Action("Index", "App")
+            <br />
+            @@Url.Action("Index", "App", new { controller = "App", action = "Index", area = "Fleet" })
+            --&gt;
+            @Url.Action("Index", "App", new { controller = "App", action = "Index", area = "Fleet" })
+            <br />
+            @@Url.Action("Index", "App", new { controller = "App", action = "Index", areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" })
+            --&gt;
+            @Url.Action("Index", "App", new { controller = "App", action = "Index", areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" })
+            <br />
+            @@Url.Action(null, null, new { controller = "App", action = "Index", areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" })
+            --&gt;
+            @Url.Action(null, null, new { controller = "App", action = "Index", areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" })
+            <br />
+            @@Html.ActionLink("Hmm", "Index", "App", new { areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" }, null)
+            --&gt;
+            @Html.ActionLink("Hmm", "Index", "App", new { areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" }, null)
+
+            <ul>
+                @{
+                    <text>There are @MvcApplication.RouteTableRoutes.Count routes</text>
+                    foreach (var route in MvcApplication.RouteTableRoutes.OfType<System.Web.Routing.Route>())
+                    {
+
+                        <li>@route.Url</li>
+                    }
+                }
+            </ul>
+        </details>
     </div>
+</div>
+<div class="row">
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>ActionLinks From Home/Index</h2>
+        <p>Unless otherwise specified as "manual", these links are done with the @@Html.ActionLink() method.</p>
+        <p>Links to Home:</p>
+        <ul>
+            <li><a href="/Home/Index" class="btn btn-default">Home Explicit (manual)</a></li>
+            <li>@Html.ActionLink("Action Only", "Index")</li>
+            <li>@Html.ActionLink("Action + Controller", "About", "Home")</li>
+            <li>@Html.ActionLink("Action Only", "About")</li>
+        </ul>
+        <p>Links to About Page</p>
+        <ul>
+            <li><a href="/Home/About" class="btn btn-default">About Explicit (manual)</a></li>
+            <li>@Html.ActionLink("Action Only", "About")</li>
+            <li>@Html.ActionLink("Action + Controller", "About", "Home")</li>
+            <li>@Html.ActionLink("Action Only", "About")</li>
+        </ul>
+        <p>Links to Fleet Area</p>
+        <ul>
+            <li><a href="/Home/About" class="btn btn-default">About Explicit (manual)</a></li>
+            <li>@Html.ActionLink("Fleet Home - Action Only", "Index", new { Area = "Fleet" })</li>
+            <li>@Html.ActionLink("Ships Home - Action + Controller", "Index", "Ships", new { Area = "Fleet" }, null)</li>
+            <li>@Html.ActionLink("Ships Home - Create Action + Controller", "Create", "Ships", new { Area = "Fleet" }, null)</li>
+            <li>@Html.ActionLink("StarSystem - Action + Controller", "Index", "Planet", new { Area = "StarSystem" }, null)</li>
+        </ul>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-8">
+        <h2>Embedded StarSystem</h2>
+        @Html.Action("Index", "Planet", new { Area = "StarSystem" })
     </div>
 </div>

@@ -5,6 +5,10 @@ using System.Web;
 
 namespace HubApp.Models
 {
+    public class Exploration
+    {
+        public int Id { get; set; }
+    }
     public class AreaProxy
     {
         public string Proxy { get; set; }

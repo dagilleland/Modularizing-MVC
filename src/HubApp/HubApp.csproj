@@ -150,7 +150,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\StarSystem\Controllers\PlanetController.cs" />
+    <Compile Include="Areas\StarSystem\Models\Planet.cs" />
+    <Compile Include="Areas\StarSystem\StarSystemAreaRegistration.cs" />
     <Compile Include="Controllers\AppController.cs" />
+    <Compile Include="Controllers\ExplorerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,6 +196,9 @@
     <Content Include="Areas\Fleet\Views\CrewMembers\Details.cshtml" />
     <Content Include="Areas\Fleet\Views\CrewMembers\Delete.cshtml" />
     <Content Include="Areas\Fleet\Views\CrewMembers\Create.cshtml" />
+    <Content Include="Areas\StarSystem\Views\web.config" />
+    <Content Include="Areas\StarSystem\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\StarSystem\Views\Planet\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -218,6 +225,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\App\Index.cshtml" />
+    <Content Include="Views\Explorer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -234,6 +242,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModularMVC\ModularMVC.csproj">
+      <Project>{3668c3ea-6fda-40cf-b56a-098be9e5b16d}</Project>
+      <Name>ModularMVC</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

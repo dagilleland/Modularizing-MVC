@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractProxy.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="IProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -21,8 +21,8 @@ namespace HubApp
             //);
             routes.MapRoute(
                 name: "Proxy",
-                url: "App/{area}/{ctr}/{act}/{payload}",
-                defaults: new { controller = "App", action = "Index", area = UrlParameter.Optional, ctr = UrlParameter.Optional, act = UrlParameter.Optional, payload = UrlParameter.Optional }
+                url: "App/{areaName}/{ctr}/{act}/{payload}",
+                defaults: new { controller = "App", action = "Index", areaName = UrlParameter.Optional, ctr = UrlParameter.Optional, act = UrlParameter.Optional, payload = UrlParameter.Optional }
             );
 
             //routes.MapRoute(
