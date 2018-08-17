@@ -2,6 +2,56 @@
 @model IEnumerable<HubApp.Areas.StarSystem.Models.PlanetaryBody>
 
 <h3>Planet/Index</h3>
+<div class="row">
+    <div class="col-md-12">
+        <details>
+            <summary>Known Routes</summary>
+            @@Url.Action()
+            --&gt;
+            @Url.Action()
+            <br />
+            @@Url.Action("Index")
+            --&gt;
+            @Url.Action("Index")
+            <br />
+            @@Url.Action("About")
+            --&gt;
+            @Url.Action("About")
+            <br />
+            @@Url.Action("Index", "App")
+            --&gt;
+            @Url.Action("Index", "App")
+            <br />
+            @@Url.Action("Index", "App", new { controller = "App", action = "Index", area = "Fleet" })
+            --&gt;
+            @Url.Action("Index", "App", new { controller = "App", action = "Index", area = "Fleet" })
+            <br />
+            @@Url.Action("Index", "App", new { controller = "App", action = "Index", areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" })
+            --&gt;
+            @Url.Action("Index", "App", new { controller = "App", action = "Index", areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" })
+            <br />
+            @@Url.Action(null, null, new { controller = "App", action = "Index", areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" })
+            --&gt;
+            @Url.Action(null, null, new { controller = "App", action = "Index", areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" })
+            <br />
+            @@Html.ActionLink("Hmm", "Index", "App", new { areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" }, null)
+            --&gt;
+            @Html.ActionLink("Hmm", "Index", "App", new { areaName = "Fleet", ctr = "Uncle", act = "Bob", payload = "Martin" }, null)
+
+            <ul>
+                @{
+                    <text>There are @MvcApplication.RouteTableRoutes.Count routes</text>
+                    foreach (var route in MvcApplication.RouteTableRoutes.OfType<System.Web.Routing.Route>())
+                    {
+
+                        <li>@route.Url</li>
+                    }
+                }
+            </ul>
+        </details>
+    </div>
+</div>
+
 <p>
     Route Data Values: <span>
         @foreach (var kvp in ViewBag.RouteInfo)
@@ -15,17 +65,17 @@
         @foreach (var kvp in ViewBag.Tokens)
         {
             <text>@kvp.Key / @kvp.Value ::</text>
-            if(kvp.Key == "Namespaces" && kvp.Value is string[])
+            if (kvp.Key == "Namespaces" && kvp.Value is string[])
             {
                 string[] data = kvp.Value as string[];
-                           <span>
-                               (
-                               @foreach(var ns in data)
-                               {
-                                   <text>@ns, </text>
-                               }
-                               )
-                           </span>
+                <span>
+                    (
+                    @foreach (var ns in data)
+                    {
+                        <text>@ns, </text>
+                    }
+                    )
+                </span>
             }
         }
     </span>

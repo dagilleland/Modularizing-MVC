@@ -12,10 +12,63 @@ using Moq;
 
 namespace Microsoft.Web.UnitTestUtil
 {
+    public class RouteCollectionBuilder
+    {
+        private RouteCollection RouteTable = new RouteCollection();
+        public static RouteCollectionBuilder Builder()
+        {
+            return new RouteCollectionBuilder();
+        }
+        public RouteCollectionBuilder WithRoute(RouteBase route)
+        {
+            RouteTable.Add(route);
+            return this;
+        }
+        public RouteCollection Make()
+        {
+            return RouteTable;
+        }
+    }
+    public class RouteDataBuilder
+    {
+        public static RouteData Make(params (string Key,string Value)[] keyValues)
+        {
+            RouteData rd = new RouteData();
+            foreach (var kv in keyValues)
+                rd.Values.Add(kv.Key, kv.Value);
+            return rd;
+        }
+    }
     public static class MvcHelper
     {
         public const string AppPathModifier = "/$(SESSION)";
+        #region Experimental
+        public static HtmlHelper<object> GetHtmlHelper(Action<RouteCollection> prependMappings)
+        {
+            HttpContextBase httpcontext = GetHttpContext("/app/", null, null);
+            RouteCollection rt = new RouteCollection();
+            prependMappings(rt);
+            rt.Add(new Route("{controller}/{action}/{id}", null) { Defaults = new RouteValueDictionary(new { id = "defaultid" }) });
+            rt.Add("namedroute", new Route("named/{controller}/{action}/{id}", null) { Defaults = new RouteValueDictionary(new { id = "defaultid" }) });
+            RouteData rd = new RouteData();
+            rd.Values.Add("controller", "home");
+            rd.Values.Add("action", "oldaction");
 
+            ViewDataDictionary vdd = new ViewDataDictionary();
+
+            ViewContext viewContext = new ViewContext()
+            {
+                HttpContext = httpcontext,
+                RouteData = rd,
+                ViewData = vdd
+            };
+            Mock<IViewDataContainer> mockVdc = new Mock<IViewDataContainer>();
+            mockVdc.Setup(vdc => vdc.ViewData).Returns(vdd);
+
+            HtmlHelper<object> htmlHelper = new HtmlHelper<object>(viewContext, mockVdc.Object, rt);
+            return htmlHelper;
+        }
+        #endregion
         public static HtmlHelper<object> GetHtmlHelper()
         {
             HttpContextBase httpcontext = GetHttpContext("/app/", null, null);

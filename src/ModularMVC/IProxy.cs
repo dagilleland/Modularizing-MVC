@@ -1,9 +1,132 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace ModularMVC
 {
+    public static class StringExtras
+    {
+        /// <summary>
+        /// Camel Case is...
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static string ToCamelCase(this string self)
+        {
+            if (string.IsNullOrWhiteSpace(self))
+                return self;
+            else if (self.Length == 1)
+                return self.ToLower();
+            else
+                return char.ToLower(self[0]) + self.Substring(1);
+        }
+        /// <summary>
+        /// Pascal Case is a version of Camel Case where the first letter is capitalized.
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static string ToPascalCase(this string self)
+        {
+            if (string.IsNullOrWhiteSpace(self))
+                return self;
+            else if (self.Length == 1)
+                return self.ToUpper();
+            else
+                return char.ToUpper(self[0]) + self.Substring(1);
+        }
+    }
+    /// <summary>
+    /// The CLASSNAME provides a pre-configured routing and action pattern where the specified proxy controller's action has the parameters of (string TargetArea, string TargetController, string TargetAction, string Id). It also exposes key information on the proxy for use in the @Html.ActionLink() helper extension.
+    /// </summary>
+    public class ProxyCore
+    {
+        #region String constructs (static and const)
+        private const string ModularMvcHostProxy = nameof(ModularMvcHostProxy);
+        private const string Index = nameof(Index);
+        private const string TargetArea = nameof(TargetArea);
+        private const string TargetController = nameof(TargetController);
+        private const string TargetAction = nameof(TargetAction);
+
+        private static string PlaceHolder_TargetArea => Placeholder(nameof(TargetArea));
+        private static string PlaceHolder_TargetController => Placeholder(nameof(TargetController));
+        private static string PlaceHolder_TargetAction => Placeholder(nameof(TargetAction));
+
+        public static string RouteName => ModularMvcHostProxy;
+        private static string Placeholder(string name) => "{" + name.ToCamelCase() + "}";
+        #endregion
+
+        public readonly string ProxyController;
+        public readonly string ProxyAction;
+        public readonly string ProxyArea;
+
+        public ProxyCore(string proxyController, string proxyAction = Index, string proxyArea = null)
+        {
+            if (string.IsNullOrEmpty(proxyController))
+            {
+                throw new ArgumentException($"{nameof(proxyController)} is null or empty.", nameof(proxyController));
+            }
+
+            if (string.IsNullOrEmpty(proxyAction))
+            {
+                throw new ArgumentException($"{nameof(proxyAction)} is null or empty.", nameof(proxyAction));
+            }
+
+            ProxyController = proxyController;
+            ProxyAction = proxyAction;
+            ProxyArea = proxyArea;
+        }
+        private string OptionalProxyAreaMap => string.IsNullOrWhiteSpace(ProxyArea) ? string.Empty : ProxyArea + "/";
+        public string RouteMappingUrl => $@"{OptionalProxyAreaMap}{ProxyController}/{ProxyAction}/{PlaceHolder_TargetArea}/{PlaceHolder_TargetController}/{PlaceHolder_TargetAction}/{{*payload}}";
+        private object RouteMappingDefaults => new { controller = ProxyController, action = ProxyAction, area = ProxyArea, payload = UrlParameter.Optional };
+        public void RegisterRoute(RouteCollection routes)
+        {
+            routes.MapRoute(RouteName, RouteMappingUrl, RouteMappingDefaults);
+        }
+
+        public RouteValueDictionary BuildRouteValues(string targetAction, string targetController, string targetArea, object targetPayload = null)
+        {
+            var dict = new RouteValueDictionary();
+            dict.Add("controller", ProxyController);
+            dict.Add("action", ProxyAction);
+            dict.Add("area", ProxyArea);
+
+            dict.Add(TargetAction.ToCamelCase(), targetAction);
+            dict.Add(TargetController.ToCamelCase(), targetController);
+            dict.Add(TargetArea.ToCamelCase(), targetArea);
+            if (targetPayload != null)
+                //dict.Add("params", Flatten(targetPayload));
+                dict.Add("params", targetPayload);
+            return dict;
+        }
+        private string Flatten(object obj)
+        {
+            RouteValueDictionary dict = new RouteValueDictionary(obj);
+            string result = "";
+            var kvPairs = new List<string>();
+            foreach (var pair in dict)
+                kvPairs.Add($"{pair.Key}/{pair.Value}");
+            result = string.Join("/", kvPairs);
+            if (!string.IsNullOrWhiteSpace(result)) result = "/" + result;
+            return result;
+        }
+
+
+        #region For Testing
+        // All are assuming correct routing has been set up.
+        public string PredictProxiedUrl(string area, string controller, string action)
+        {
+            return RouteMappingUrl.Replace(PlaceHolder_TargetController, controller).Replace(PlaceHolder_TargetAction, action).Replace(PlaceHolder_TargetArea, area).Replace(@"/{*payload}", string.Empty);
+        }
+        public string PredictProxiedUrl(string area, string controller, string action, params string[] keyValuePairs)
+        {
+            return RouteMappingUrl.Replace(PlaceHolder_TargetController, controller).Replace(PlaceHolder_TargetAction, action).Replace(PlaceHolder_TargetArea, area).Replace(@"{*payload}", string.Join("/", keyValuePairs));
+        }
+
+        #endregion
+    }
+
     public interface IProxy
     {
         string Proxy { get; set; }
