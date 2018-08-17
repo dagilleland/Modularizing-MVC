@@ -214,12 +214,12 @@ namespace ModularMVC.Specs
                 sut.RegisterRoute(rc);
             });
             // 4) Expectations
-            const string expectedUrl = @"App/{targetArea}/{targetController}/{targetAction}/{*params}";
             string payload = Flatten(new RouteValueDictionary(givenPayload));
             if (!string.IsNullOrWhiteSpace(payload)) payload = "/" + payload;
             string expected = $"<a href=\"{MvcHelper.AppPathModifier}/app/{sut.ProxyController}/{sut.ProxyAction}/{givenArea}/{givenController}/{givenAction}{payload}\">{givenLinkText}</a>";
 
             // Act
+            // A) Internally, this is what my new ActionLink extension should do with the Proxy object and the supplied data object
             var actual = html.ActionLink(givenLinkText, sut.ProxyAction, sut.ProxyController, sut.BuildRouteValues(givenAction, givenController, givenArea, givenPayload), null);
 
             // Assert

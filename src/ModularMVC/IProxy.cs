@@ -45,13 +45,15 @@ namespace ModularMVC
         #region String constructs (static and const)
         private const string ModularMvcHostProxy = nameof(ModularMvcHostProxy);
         private const string Index = nameof(Index);
+        private const string Payload = nameof(Payload);
         private const string TargetArea = nameof(TargetArea);
         private const string TargetController = nameof(TargetController);
         private const string TargetAction = nameof(TargetAction);
 
-        private static string PlaceHolder_TargetArea => Placeholder(nameof(TargetArea));
-        private static string PlaceHolder_TargetController => Placeholder(nameof(TargetController));
-        private static string PlaceHolder_TargetAction => Placeholder(nameof(TargetAction));
+        private static string PlaceHolder_TargetArea => Placeholder(TargetArea);
+        private static string PlaceHolder_TargetController => Placeholder(TargetController);
+        private static string PlaceHolder_TargetAction => Placeholder(TargetAction);
+        private static string PlaceHolder_Payload => Placeholder("*" + Payload);
 
         public static string RouteName => ModularMvcHostProxy;
         private static string Placeholder(string name) => "{" + name.ToCamelCase() + "}";
@@ -78,7 +80,7 @@ namespace ModularMVC
             ProxyArea = proxyArea;
         }
         private string OptionalProxyAreaMap => string.IsNullOrWhiteSpace(ProxyArea) ? string.Empty : ProxyArea + "/";
-        public string RouteMappingUrl => $@"{OptionalProxyAreaMap}{ProxyController}/{ProxyAction}/{PlaceHolder_TargetArea}/{PlaceHolder_TargetController}/{PlaceHolder_TargetAction}/{{*payload}}";
+        public string RouteMappingUrl => $@"{OptionalProxyAreaMap}{ProxyController}/{ProxyAction}/{PlaceHolder_TargetArea}/{PlaceHolder_TargetController}/{PlaceHolder_TargetAction}/{PlaceHolder_Payload}";
         private object RouteMappingDefaults => new { controller = ProxyController, action = ProxyAction, area = ProxyArea, payload = UrlParameter.Optional };
         public void RegisterRoute(RouteCollection routes)
         {
@@ -96,7 +98,7 @@ namespace ModularMVC
             dict.Add(TargetController.ToCamelCase(), targetController);
             dict.Add(TargetArea.ToCamelCase(), targetArea);
             if (targetPayload != null)
-                dict.Add("payload", Flatten(targetPayload));
+                dict.Add(Payload.ToCamelCase(), Flatten(targetPayload));
             //dict.Add("payload", targetPayload);
             return dict;
         }
