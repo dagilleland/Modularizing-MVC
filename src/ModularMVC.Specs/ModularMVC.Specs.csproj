@@ -120,10 +120,6 @@
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModularMVC\ModularMVC.csproj">
-      <Project>{3668c3ea-6fda-40cf-b56a-098be9e5b16d}</Project>
-      <Name>ModularMVC</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Shipyards.UI\Shipyards.UI.csproj">
       <Project>{63fdb88c-859b-448f-b708-5b2a385080a5}</Project>
       <Name>Shipyards.UI</Name>
