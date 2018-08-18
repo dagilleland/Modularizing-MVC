@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,18 +9,11 @@ namespace HubApp.Areas.StarSystem.Models
 {
     public class PlanetaryBody
     {
+        [Description("The position of the orbit with respect to the star")]
         public int Orbit { get; set; }
+        [Description("The common name of the planetary body")]
+        [Required(ErrorMessage = "Planet name is required")]
+        [StringLength(20, MinimumLength = 2)]
         public string Name { get; set; }
-    }
-    public static class SolSystem
-    {
-        public static IDictionary<string, PlanetaryBody> Planets
-            = new Dictionary<string, PlanetaryBody>
-            {
-                {"Mercury", new PlanetaryBody { Name = "Mercury", Orbit = 1 } },
-                {"Venus", new PlanetaryBody { Name = "Venus", Orbit = 2 } },
-                {"Earth", new PlanetaryBody { Name = "Earth", Orbit = 3 } },
-                {"Mars", new PlanetaryBody { Name = "Mars", Orbit = 4 } }
-            };
     }
 }

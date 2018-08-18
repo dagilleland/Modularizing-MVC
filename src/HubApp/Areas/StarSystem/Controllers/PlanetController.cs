@@ -16,5 +16,11 @@ namespace HubApp.Areas.StarSystem.Controllers
             ViewBag.Tokens = this.RouteData.DataTokens;
             return View(SolSystem.Planets.Values);
         }
+
+        public ActionResult Edit(int id)
+        {
+
+            return View(SolSystem.Planets.Values.FirstOrDefault(x=>x.Orbit == id));
+        }
     }
 }

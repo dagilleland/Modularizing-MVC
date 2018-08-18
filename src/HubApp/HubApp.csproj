@@ -51,6 +51,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FluentBootstrap, Version=3.3.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentBootstrap.Fork.3.3.7\lib\net45\FluentBootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentBootstrap.Mvc, Version=3.3.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentBootstrap.Fork.Mvc.3.3.7\lib\net45\FluentBootstrap.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.DependencyCollector, Version=2.7.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.7.2\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
     </Reference>
@@ -152,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\StarSystem\Controllers\PlanetController.cs" />
     <Compile Include="Areas\StarSystem\Models\Planet.cs" />
+    <Compile Include="Areas\StarSystem\Models\SolSystem.cs" />
     <Compile Include="Areas\StarSystem\StarSystemAreaRegistration.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\ExplorerController.cs" />
@@ -167,9 +177,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\Fleet\SCInsigniaChart.png" />
     <Content Include="Content\Images\Fleet\SCoE.png" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -199,6 +212,12 @@
     <Content Include="Areas\StarSystem\Views\web.config" />
     <Content Include="Areas\StarSystem\Views\_ViewStart.cshtml" />
     <Content Include="Areas\StarSystem\Views\Planet\Index.cshtml" />
+    <Content Include="Areas\StarSystem\Views\Planet\Edit.cshtml" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -226,6 +245,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\App\Index.cshtml" />
     <Content Include="Views\Explorer\Index.cshtml" />
+    <None Include="Web.ConnectionStrings.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
