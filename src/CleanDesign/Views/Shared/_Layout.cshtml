@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using FluentBootstrap
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,30 +10,36 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-        </div>
-    </div>
+    @using (var navbar = Html.Bootstrap().Navbar().SetInverse().AddStyle("border-radius", "0").Begin())
+    {
+        // Note: border-radius above is to override the media query that gave it a radius (for some reason)
 
-    <div class="container body-content">
+        // Make a NavBarHeader
+        using (var navbarHeader = navbar.NavbarHeader().Begin())
+        {
+            // Add a "brand" with an icon
+            @navbarHeader.Brand("Clean Design").SetIcon(Icon.Education).SetHref(Url.Action("Index"))
+            @navbarHeader.NavbarToggle()
+        }
+        using (var navbarCollapse = navbar.NavbarCollapse().Begin())
+        {
+            var contact = "Contact Us";
+            var isHome = Url.Action().Equals(Url.Action("Index"));
+            var isAbout = Url.Action().Equals(Url.Action("About"));
+            var isContact = Url.Action().Equals(Url.Action("Contact"));
+            @navbar.NavbarLink(" Home", "Index").AddContent(Html.Bootstrap().Icon(Icon.Home)).SetActive(isHome)
+            @navbar.NavbarLink(" Who We Are", "About", "Home").AddContent(Html.Bootstrap().Icon(Icon.Globe)).SetActive(isAbout)
+            @navbar.NavbarLink(contact).SetHref(Url.Action("Contact")).SetActive(isContact)
+        }
+    }
+    @using (var container = Html.Bootstrap().Container().SetFluid().Begin())
+    {
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
-    </div>
+    }
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>

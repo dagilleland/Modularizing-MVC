@@ -13,5 +13,15 @@ namespace CleanDesign.Controllers
         {
             return View();
         }
+        // GET: About
+        public ActionResult About()
+        {
+            return View();
+        }
+        // GET: Contact
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }

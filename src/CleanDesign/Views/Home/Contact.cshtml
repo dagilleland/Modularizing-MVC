@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+}
+
+<h2>Contact</h2>
+
+@using (Html.Bootstrap().Address().Begin())
+{
+    <text>
+        <strong>Twitter, Inc.</strong><br>
+        795 Folsom Ave, Suite 600<br>
+        San Francisco, CA 94107<br>
+        @Html.Bootstrap().Abbreviation("Phone", "P:") (123) 456-7890
+    </text>
+}
+@using (Html.Bootstrap().Address().Begin())
+{
+    <strong>Full Name</strong><br>
+    @Html.Bootstrap().Link("first.last@example.com", "mailto:")
+}
