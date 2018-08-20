@@ -6,7 +6,7 @@
 
 <div class="jumbotron">
     <h1>MVC Modularization Demo</h1>
-
+    <p>Note: Be sure to <code>nuget pack AirTrafficModule.nuspec</code> and add to your personal/local NuGet Package source.</p>
     <p>
         <a href="/Error/Index" class="btn btn-warning">Error - Index</a>
         <a href="/Error/Forbidden" class="btn btn-warning">Error - Forbidden</a>
@@ -18,7 +18,7 @@
 
 <div class="row">
     <div class="col-md-7">
-        <h4>Registered Routes</h4>
+        <h4>Registered Routes @Html.ActionLink("View Registrations", "ViewRegistrations", "App", new { area = "Hub" }, new { @class = "btn btn-success" } )</h4>
         <hr />
         <p>The following are the routing patterns that are registered in this site. It's the combination of the typical route configurations along with MVC Annotated routes and Area configurations.</p>
 

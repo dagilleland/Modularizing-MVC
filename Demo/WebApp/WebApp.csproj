@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AirTrafficModule, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AirTrafficModule.1.0.0\lib\net462\AirTrafficModule.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.DependencyCollector, Version=2.7.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.7.2\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
     </Reference>
@@ -156,6 +159,29 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Airport\antenna-2.png" />
+    <Content Include="Content\Images\Airport\antenna.png" />
+    <Content Include="Content\Images\Airport\chat.png" />
+    <Content Include="Content\Images\Airport\customer-support.png" />
+    <Content Include="Content\Images\Airport\headphone.png" />
+    <Content Include="Content\Images\Airport\headset.png" />
+    <Content Include="Content\Images\Airport\helipad.png" />
+    <Content Include="Content\Images\Airport\internet.png" />
+    <Content Include="Content\Images\Airport\luggage.png" />
+    <Content Include="Content\Images\Airport\mobile-phone.png" />
+    <Content Include="Content\Images\Airport\newspaper.png" />
+    <Content Include="Content\Images\Airport\paper-plane.png" />
+    <Content Include="Content\Images\Airport\passport.png" />
+    <Content Include="Content\Images\Airport\phone-book-contact.png" />
+    <Content Include="Content\Images\Airport\phone-book.png" />
+    <Content Include="Content\Images\Airport\pin.png" />
+    <Content Include="Content\Images\Airport\plane.png" />
+    <Content Include="Content\Images\Airport\stopclock.png" />
+    <Content Include="Content\Images\Airport\support.png" />
+    <Content Include="Content\Images\Airport\ticket.png" />
+    <Content Include="Content\Images\Airport\tools.png" />
+    <Content Include="Content\Images\Airport\world-map.png" />
+    <Content Include="Content\Images\Airport\world.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -167,6 +193,12 @@
     </Content>
     <Content Include="Error\Gone410.cshtml" />
     <Content Include="Error\NotFound404.cshtml" />
+    <Content Include="Content\Images\Airport\ReadMe.md" />
+    <Content Include="Areas\Airport\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Airport\Views\web.config" />
+    <Content Include="Areas\Airport\Views\Shared\_AirportLayout.cshtml" />
+    <Content Include="Areas\Airport\Views\AirTraffic\Index.cshtml" />
+    <Content Include="Areas\Airport\Views\Airline\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

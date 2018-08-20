@@ -47,9 +47,7 @@ namespace WebApp.Controllers
         public ActionResult ViewRegistrations()
         {
             var model = MvcApplication.RegisteredMvcModules;
-            //List<Type> controllers = MvcApplication.RelatedControllers;
 
-            //ViewBag.Controllers = controllers;
             return View(model);
         }
     }
