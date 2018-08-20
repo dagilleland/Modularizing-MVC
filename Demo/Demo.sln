@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcModularization", "MvcModularization\MvcModularization.csproj", "{A08B544F-14F8-482A-942D-E29B962929F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTrafficModule", "AirTrafficModule\AirTrafficModule.csproj", "{9CBADA28-73AA-47F3-B31F-3EC220277BA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A08B544F-14F8-482A-942D-E29B962929F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A08B544F-14F8-482A-942D-E29B962929F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A08B544F-14F8-482A-942D-E29B962929F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CBADA28-73AA-47F3-B31F-3EC220277BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CBADA28-73AA-47F3-B31F-3EC220277BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CBADA28-73AA-47F3-B31F-3EC220277BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CBADA28-73AA-47F3-B31F-3EC220277BA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
