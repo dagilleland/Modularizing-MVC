@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>AirTrafficModule</id>
+    <version>1.0.0</version>
+    <title>Air Traffic Demo MVC Module</title>
+    <authors>dagilleland</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Bare-bones demo for a working MVC NuGet Module</description>
+    <releaseNotes>Initial Release.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+  </metadata>
+  <files>
+    <file src="bin/AirTrafficModule.dll" target="lib/net462" />
+    <file src="Areas/Airport/Views/**/*.*" target="content" />
+    <file src="Content/Images/Airport/**/*.*" target="content" />
+  </files>
+</package>
