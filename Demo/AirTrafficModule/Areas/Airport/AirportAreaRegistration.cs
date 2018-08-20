@@ -16,14 +16,17 @@ namespace AirTrafficModule.Areas.Airport
         {
             context.MapRoute(
                 name: "Airport_default",
-                url: "Airport/{controller}/{action}/{id}",
+                url: "Airport/{controller}/{action}/{clearance}/{flight}/{runway}",
                 defaults: new
                 {
                     action = Index,
                     controller = AirTraffic,
-                    id = UrlParameter.Optional
+                    clearance = UrlParameter.Optional,
+                    flight = UrlParameter.Optional,
+                    runway = UrlParameter.Optional
                 }
             ).SetModuleRegistration(new MvcModule(AirTraffic, Index, Airport, LinkText), context);
+
             context.MapRoute(
                 name: "Airline_default",
                 url: "Airport/{controller}/{action}/{email}",

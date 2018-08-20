@@ -1,2 +1,21 @@
-﻿<h1>Airline</h1>
-<img src="~/Content/Images/Airport/plane.png" />
+﻿@using AirTrafficModule.Areas.Airport.Models
+@model BookingContact
+
+<h1>Airline</h1>
+
+@{ 
+    if(Model != null)
+    {
+        <div>We received your contact information on @Model.SubmittedDateTime.ToShortDateString() and will correspond with you via your email (@Model.Email)</div>
+    }
+    else
+    {
+        <div>Send us your email address to get discount information on future flights.</div>
+    }
+}
+<form method="post">
+    <input type="email" placeholder="Your email address" name="email" required />
+    <button type="submit" class="btn btn-primary">Contact Us</button>
+</form>
+
+<img src="~/Content/Images/Airport/plane.png" class="col-md-2 img-responsive img-thumbnail" />

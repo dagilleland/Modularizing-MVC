@@ -54,13 +54,16 @@
         </td>
     </tr>
     <tr>
-        <td colspan="5">
+        <td><blockquote>Actions &rArr;</blockquote></td>
+        <td colspan="4">
             <ul class="list-unstyled">
                 @foreach (var controller in item.AvailableControllers)
                 {
-                    string controllerInfo = controller.Key + "{" + string.Join(", ", controller.Value.Keys) + "}";
+                    string controllerInfo = controller.Key + "<ul>";
+                    controllerInfo += string.Join(string.Empty, controller.Value.Select(x => $"<li>{x.Key}</li>"));
+                    controllerInfo += "</ul>";
                     <li>
-                        @controllerInfo
+                        @Html.Raw(controllerInfo)
                     </li>
                 }
             </ul>

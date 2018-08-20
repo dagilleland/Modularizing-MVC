@@ -19,7 +19,7 @@ namespace AirTrafficModule.Areas.Airport.Controllers
         [HttpPost]
         public ActionResult Index(string email)
         {
-            return View(new BookingContact { Email = email, SubmitteDateTime = DateTime.Now });
+            return View(new BookingContact { Email = email, SubmittedDateTime = DateTime.Now });
         }
     }
 }

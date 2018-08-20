@@ -62,7 +62,11 @@ namespace MvcModularization
                             AvailableControllers.Add(controller.FullName, new AvailableActions());
                             var methods = controller.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
                             foreach (var action in methods)
-                                AvailableControllers[controller.FullName].Add(action.Name, action);
+                            {
+                                string actionNameKey = 
+                                    $"{action.Name}({string.Join(", ", action.GetParameters().Select(x => ParameterDescription(x)))})";
+                                AvailableControllers[controller.FullName].Add(actionNameKey, action);
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -73,7 +77,24 @@ namespace MvcModularization
             }
 
         }
-
+        private string ParameterDescription(ParameterInfo info)
+        {
+            string text = info.Name;
+            Type type = info.ParameterType;
+            if(type.ContainsGenericParameters)
+            {
+                text = type.Name + " of " + string.Join(", ", type.GenericTypeArguments.Select(x => x.Name)) + text;
+            }
+            else if(type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                text = type.GenericTypeArguments[0].Name + "? " + text;
+            }
+            else
+            {
+                text = info.ParameterType.Name + " " + text;
+            }
+            return text;
+        }
         public AvailableControllers AvailableControllers { get; private set; } = new AvailableControllers();
     }
 }

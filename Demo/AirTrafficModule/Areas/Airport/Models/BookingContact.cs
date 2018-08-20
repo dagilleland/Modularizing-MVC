@@ -8,6 +8,6 @@ namespace AirTrafficModule.Areas.Airport.Models
     public class BookingContact
     {
         public string Email { get; set; }
-        public DateTime SubmitteDateTime { get; set; }
+        public DateTime SubmittedDateTime { get; set; }
     }
 }

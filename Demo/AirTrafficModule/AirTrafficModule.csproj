@@ -149,6 +149,7 @@
     <Compile Include="Areas\Airport\Controllers\AirlineController.cs" />
     <Compile Include="Areas\Airport\Controllers\AirTrafficController.cs" />
     <Compile Include="Areas\Airport\Models\BookingContact.cs" />
+    <Compile Include="Areas\Airport\Models\RunwayClearance.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

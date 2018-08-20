@@ -13,7 +13,7 @@ namespace MvcModularization
     /// <summary>
     /// 
     /// </summary>
-    public class AvailableActions : Dictionary<string, MemberInfo>
+    public class AvailableActions : Dictionary<string, MethodInfo>
     {
     }
     #endregion

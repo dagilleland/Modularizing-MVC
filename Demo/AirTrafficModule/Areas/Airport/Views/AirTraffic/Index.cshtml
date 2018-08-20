@@ -1,3 +1,17 @@
-﻿<h1>Air Traffic Controller</h1>
+﻿@using AirTrafficModule.Areas.Airport.Models
+@model RunwayClearance
 
-<img src="~/Content/Images/Airport/headset.png" />
+<h1>Air Traffic Controller</h1>
+
+<img src="~/Content/Images/Airport/headset.png" class="pull-right col-md-2 img-responsive img-thumbnail" />
+
+<div>
+    @if(Model != null)
+    {
+        <text>Flight @Model.FlightNumber, you are cleared for @Model.Reason on runway @Model.Runway.</text>
+    }
+    else
+    {
+        <text>Quiet day today, eh Jim? @ViewBag.Noise</text>
+    }
+</div>
