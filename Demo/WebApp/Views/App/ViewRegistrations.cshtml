@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MvcModularization.MvcModule>
+@using MvcModularization
+@{
+    ViewBag.Title = "ViewRegistrations";
+}
+
+<h2>ViewRegistrations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DefaultController)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefaultAction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefaultArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefaultLinkText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Namespaces)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    string namespaces = string.Join(", ", item.Namespaces);
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefaultController)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefaultAction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefaultArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefaultLinkText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => namespaces)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5">
+            <ul class="list-unstyled">
+                @foreach (var controller in item.AvailableControllers)
+                {
+                    string controllerInfo = controller.Key + "{" + string.Join(", ", controller.Value.Keys) + "}";
+                    <li>
+                        @controllerInfo
+                    </li>
+                }
+            </ul>
+        </td>
+        <td>@item.AvailableControllers.Count Controllers</td>
+    </tr>
+}
+
+</table>
