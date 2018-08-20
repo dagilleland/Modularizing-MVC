@@ -1,0 +1,51 @@
+﻿@model WebMvcApp.Models.SampleRouteInfo
+
+@{ 
+    RouteBase toRemove = null;
+    foreach(var spot in Url.RouteCollection.OfType<Route>())
+    {
+        if (spot.Url == "Flight/To/The/Stars")
+        {
+            toRemove = spot;
+        }
+    }
+    if(toRemove != null)
+    {
+        Url.RouteCollection.Remove(toRemove);
+    }
+    
+}
+<div>
+    <h4>SampleRouteInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfController)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfController)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfAction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfAction)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

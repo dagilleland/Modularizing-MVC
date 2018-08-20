@@ -1,0 +1,219 @@
+﻿@model WebMvcApp.Models.SampleRouteInfo
+@using System.Text.RegularExpressions
+@using System.Collections.Generic
+@using System.Collections.ObjectModel
+@using System.Web.Mvc.Routing
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Home/Index View</h2>
+<div class="row">
+    <div class="col-md-12">
+        <details>
+            <summary>My Request Context</summary>
+            @{
+                foreach (var item in Url.RequestContext.RouteData.Values)
+                {
+                    <text>@item.Key, "@item.Value" -</text>
+                }
+                <br />
+                foreach (var item in Url.RequestContext.RouteData.DataTokens)
+                {
+                    <text>@item.Key, "@item.Value" -</text>
+                }
+            }
+        </details>
+        <a href="/Error/Index" class="btn btn-warning">Error - Index</a>
+        <a href="/Error/Forbidden" class="btn btn-warning">Error - Forbidden</a>
+        <a href="/Error/Crash" class="btn btn-warning">Error - Crash</a>
+        <a href="/Error/NotFound" class="btn btn-warning">Error - NotFound <b class="badge bg-danger">!</b></a>
+        <a href="/Error/Broken/HelpMe" class="btn btn-danger">Broken</a>
+        @Html.Action("Me", new { number = 5, name = "Bob" })
+        @Html.Action("You", new { num = 5, fullName = "Bob the Builder" })
+        @foreach (var route in Url.RouteCollection)
+        {
+            Route spot;
+            if (route is Route)
+            {
+                spot = route as Route;
+                MvcModule mod = spot.GetModuleRegistration();
+                if (mod != null)
+                {
+                    var noa = string.IsNullOrEmpty(mod.DefaultArea) ? "UknownArea" : mod.DefaultArea;
+                    @Html.ActionLink(mod.DefaultLinkText, null, null, new { controller = "App", action = "Proxy", area = "Hub", nameOfArea = noa, nameOfAction = mod.DefaultAction, nameOfController = mod.DefaultController }, new { title = "Opens the link with the proxy controller", @class = "btn btn-success" })
+                    <text> </text>
+                }
+            }
+            else if (route is IReadOnlyCollection<RouteBase>)
+            {
+                var rc = (route as IReadOnlyCollection<RouteBase>);
+                foreach (var attRoute in Url.RouteCollection)
+                {
+                    if (attRoute is Route)
+                    {
+                        spot = attRoute as Route;
+                        MvcModule mod = spot.GetModuleRegistration();
+                        if (mod != null)
+                        {
+                            @*var noa = string.IsNullOrEmpty(mod.DefaultArea) ? "UknownArea" : mod.DefaultArea;
+                            @Html.ActionLink(mod.DefaultLinkText, null, null, new { controller = "App", action = "Proxy", area = "Hub", nameOfArea = noa, nameOfAction = mod.DefaultAction, nameOfController = mod.DefaultController }, new { title = "Opens the link with the proxy controller", @class = "btn btn-primary" })*@
+
+                        }
+                    }
+                }
+            }
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-7">
+        <h4>Registered Routes</h4>
+        <hr />
+        <p>The following are the routing patterns that are registered in this site. It's the combination of the typical route configurations along with MVC Annotated routes and Area configurations.</p>
+
+        <table class="table table-condensed">
+            <tr>
+                <th>Route Type</th>
+                <th>Route Url Template</th>
+            </tr>
+            @foreach (var route in Url.RouteCollection)
+            {
+                string typeName = route.GetType().Name;
+                string routeAreaName = string.Empty;
+                string urlTemplate = string.Empty;
+                if (route is Route)
+                {
+                    Route isRoute = (route as Route);
+                    urlTemplate = isRoute.Url;
+                    object found;
+                    if(isRoute.DataTokens != null && isRoute.DataTokens.TryGetValue("area", out found))
+                    {
+                        routeAreaName = found.ToString();
+                        typeName += $"<br />Area: <u>{routeAreaName}</u>";
+                    }
+
+                }
+                else if (route is IReadOnlyCollection<RouteBase>)
+                {
+                    var rc = (route as IReadOnlyCollection<RouteBase>);
+                    typeName += $"<br />({rc.Count} routes)";
+                    urlTemplate = "<ul  class='list-unstyled'>";
+                    foreach (var spot in rc.OfType<Route>())
+                    {
+                        urlTemplate += $"<li>&oplus; {spot.Url}";
+                        object found;
+                        if (spot.DataTokens != null && spot.DataTokens.TryGetValue("area", out found))
+                        {
+                            routeAreaName = found.ToString();
+                            urlTemplate += $"<br />Area: <u>{routeAreaName}</u>";
+                        }
+                        urlTemplate += "</li>";
+                    }
+                    urlTemplate += "</ul>";
+                }
+                <tr>
+                    <td>@Html.Raw(typeName)</td>
+                    <td>@Html.Raw(urlTemplate)</td>
+                </tr>
+            }
+        </table>
+
+    </div>
+    <div class="col-md-5">
+        <h4>SampleRouteInfo</h4>
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameOfArea, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.NameOfArea, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NameOfArea, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameOfController, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.NameOfController, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NameOfController, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameOfAction, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.NameOfAction, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NameOfAction, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+        <h4>Route Resolution <small>using Url.Action()</small></h4>
+        <hr />
+
+        @if (IsPost)
+        {
+
+            <b class="bg-info">@Url.Action(Model.NameOfAction, Model.NameOfController, new { area = Model.NameOfArea })</b> @Html.ActionLink("Visit Link", Model.NameOfAction, Model.NameOfController, new { area = Model.NameOfArea }, new { title = "Opens the link in a new window", target = "_blank", @class = "btn btn-default" })
+
+            try
+            {
+                @*string link = Html.ActionLink("Sample", Model.NameOfAction, Model.NameOfController, new { area = Model.NameOfArea }, null).ToString();
+                var regex = new Regex("<a [^>]*href=(?:'(?<href>.*?)')|(?:\"(?<href>.*?)\")", RegexOptions.IgnoreCase);
+                var urls = regex.Matches(link).OfType<Match>().Select(m => m.Groups["href"].Value);
+                @urls.First()*@
+                var noa = string.IsNullOrEmpty(Model.NameOfArea) ? "UknownArea" : Model.NameOfArea;
+                @Html.ActionLink("Visit Under the Proxy", null, null, new { controller = "App", action = "Proxy", area = "Hub", nameOfArea = noa, nameOfAction = Model.NameOfAction, nameOfController = Model.NameOfController }, new { title = "Opens the link with the proxy controller", @class = "btn btn-primary" })
+                Html.Action(Model.NameOfAction, Model.NameOfController, new { area = Model.NameOfArea });
+                <p>This is a valid Url call, likely because either the action or the controller do not exist.</p>
+            }
+            catch (HttpException ex)
+            {
+                if (ex.Message.StartsWith("Error executing child request for handler "))
+                {
+                    <p>This is <b>NOT</b> a valid Url call, likely because either the action or the controller do not exist.</p>
+                }
+                else
+                {
+                    <br />
+                    @ex.Message
+                    Exception exp = ex;
+                    while (exp.InnerException != null)
+                    {
+                        exp = exp.InnerException;
+                    }
+                    @exp.Message
+                }
+            }
+            catch (Exception ex)
+            {
+                <blockquote>@ex.Message</blockquote>
+            }
+        }
+        else
+        {
+            <p>Please fill out the form above to do a sample route resolution.</p>
+        }
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

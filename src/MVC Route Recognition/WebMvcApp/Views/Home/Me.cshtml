@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Me";
+}
+
+<h2>Me</h2>
+
+<details>
+    <summary>My Request Context</summary>
+    @{
+        foreach (var item in Url.RequestContext.RouteData.Values)
+        {
+            <text>@item.Key, "@item.Value" -</text>
+        }
+        <br />
+        foreach (var item in Url.RequestContext.RouteData.DataTokens)
+        {
+            <text>@item.Key, "@item.Value" -</text>
+        }
+    }
+</details>
