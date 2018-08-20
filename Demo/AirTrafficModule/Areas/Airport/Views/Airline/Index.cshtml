@@ -1,2 +1,17 @@
-﻿<h1>Airline</h1>
+﻿@using AirTrafficModule.Areas.Airport.Models
+@model BookingContact
+
+<h1>Airline</h1>
+
+@{ 
+    if(Model != null && ViewBag.Timestamp is DateTime)
+    {
+        
+    }
+}
+<form method="post">
+    <input type="email" placeholder="Your email address" name="email" />
+    <button type="submit" class="btn btn-primary">Contact Us</button>
+</form>
+
 <img src="~/Content/Images/Airport/plane.png" />

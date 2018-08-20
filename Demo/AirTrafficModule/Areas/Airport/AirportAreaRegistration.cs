@@ -3,7 +3,7 @@ using MvcModularization;
 
 namespace AirTrafficModule.Areas.Airport
 {
-    public class AirportAreaRegistration : AreaRegistration 
+    public class AirportAreaRegistration : AreaRegistration
     {
         private const string Airport = nameof(Airport);
         private const string AirTraffic = nameof(AirTraffic);
@@ -12,7 +12,7 @@ namespace AirTrafficModule.Areas.Airport
 
         public override string AreaName => Airport;
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 name: "Airport_default",
@@ -24,6 +24,16 @@ namespace AirTrafficModule.Areas.Airport
                     id = UrlParameter.Optional
                 }
             ).SetModuleRegistration(new MvcModule(AirTraffic, Index, Airport, LinkText), context);
+            context.MapRoute(
+                name: "Airline_default",
+                url: "Airport/{controller}/{action}/{email}",
+                defaults: new
+                {
+                    action = Index,
+                    controller = "Airline",
+                    email = UrlParameter.Optional
+                }
+            );
         }
     }
 }

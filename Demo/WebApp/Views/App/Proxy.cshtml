@@ -49,7 +49,7 @@
 @{ 
     try
     {
-        @Html.Action(Model.NameOfAction, Model.NameOfController, new { Model.NameOfArea})
+        @Html.Action(Model.NameOfAction, Model.NameOfController, new { area = Model.NameOfArea})
     }
     catch (Exception ex)
     {

@@ -23,7 +23,7 @@ namespace WebApp.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Goals of this Demo Application.";
 
             return View();
         }
