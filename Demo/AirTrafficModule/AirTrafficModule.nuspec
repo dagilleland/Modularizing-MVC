@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AirTrafficModule</id>
-    <version>1.0.0.05</version>
+    <version>1.0.0.09</version>
     <title>Air Traffic Demo MVC Module</title>
     <authors>dagilleland</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -12,6 +12,7 @@
   </metadata>
   <files>
     <file src="bin/AirTrafficModule.dll" target="lib/net462" />
+    <file src="bin/AirTrafficModule.pdb" target="lib/net462" />
     <file src="Areas/Airport/Views/**/*.*" target="content" />
     <file src="Content/Images/Airport/**/*.*" target="content" />
   </files>

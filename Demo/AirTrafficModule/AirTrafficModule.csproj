@@ -130,7 +130,6 @@
     <Content Include="Areas\Airport\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Airport\Views\AirTraffic\Index.cshtml" />
     <Content Include="Areas\Airport\Views\Airline\Index.cshtml" />
-    <Content Include="Areas\Airport\Views\Shared\_AirportLayout.cshtml" />
     <None Include="AirTrafficModule.nuspec" />
     <Content Include="Content\Images\Airport\ReadMe.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

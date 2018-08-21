@@ -46,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AirTrafficModule, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AirTrafficModule.1.0.0.5\lib\net462\AirTrafficModule.dll</HintPath>
+      <HintPath>..\packages\AirTrafficModule.1.0.0.9\lib\net462\AirTrafficModule.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.DependencyCollector, Version=2.7.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.7.2\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
@@ -193,10 +193,9 @@
     </Content>
     <Content Include="Error\Gone410.cshtml" />
     <Content Include="Error\NotFound404.cshtml" />
-    <Content Include="Content\Images\Airport\ReadMe.md" />
     <Content Include="Areas\Airport\Views\_ViewStart.cshtml" />
+    <Content Include="Content\Images\Airport\ReadMe.md" />
     <Content Include="Areas\Airport\Views\web.config" />
-    <Content Include="Areas\Airport\Views\Shared\_AirportLayout.cshtml" />
     <Content Include="Areas\Airport\Views\AirTraffic\Index.cshtml" />
     <Content Include="Areas\Airport\Views\Airline\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -230,6 +229,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\App\Proxy.cshtml" />
     <Content Include="Views\App\ViewRegistrations.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

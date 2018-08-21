@@ -25,7 +25,7 @@ namespace AirTrafficModule.Areas.Airport
                     flight = UrlParameter.Optional,
                     runway = UrlParameter.Optional
                 }
-            ).SetModuleRegistration(new MvcModule(AirTraffic, Index, Airport, LinkText), context);
+            ).SetModuleRegistration(new MvcModule(AirTraffic, Index, Airport, LinkText, $"{Airport}/{AirTraffic}/{Index}"), context);
 
             context.MapRoute(
                 name: "Airline_default",

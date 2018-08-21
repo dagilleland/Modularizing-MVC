@@ -1,0 +1,14 @@
+﻿@using WebApp
+
+<!-- Menu of Registered Application -->
+<div class="row">
+    <div class="col-md-12">
+        @{
+            foreach (var mod in WebApp.MvcApplication.RegisteredMvcModules)
+            {
+                <a class="btn btn-success" href="@mod.DefaultLinkUrl">@mod.DefaultLinkText</a>
+            }
+        }
+
+    </div>
+</div>

@@ -15,8 +15,9 @@ namespace MvcModularization
         public string DefaultAction { get; private set; }
         public string DefaultArea { get; private set; }
         public string DefaultLinkText { get; private set; }
+        public string DefaultLinkUrl { get; private set; }
         public ICollection<string> Namespaces { get; private set; } = new List<string>();
-        public MvcModule(string defaultController, string defaultAction, string defaultArea, string defaultLinkText)
+        public MvcModule(string defaultController, string defaultAction, string defaultArea, string defaultLinkText, string defaultLinkUrl)
         {
             if (string.IsNullOrEmpty(defaultController))
                 throw new ArgumentException($"{nameof(defaultController)} is null or empty.", nameof(defaultController));
@@ -26,11 +27,14 @@ namespace MvcModularization
                 throw new ArgumentException($"{nameof(defaultArea)} is null or empty.", nameof(defaultArea));
             if (string.IsNullOrEmpty(defaultLinkText))
                 throw new ArgumentException($"{nameof(defaultLinkText)} is null or empty.", nameof(defaultLinkText));
+            if (string.IsNullOrEmpty(defaultLinkUrl))
+                throw new ArgumentException($"{nameof(defaultLinkUrl)} is null or empty.", nameof(defaultLinkUrl));
 
             DefaultController = defaultController;
             DefaultAction = defaultAction;
             DefaultArea = defaultArea;
             DefaultLinkText = defaultLinkText;
+            DefaultLinkUrl = defaultLinkUrl;
         }
 
         internal MvcModule Clone() { return this.MemberwiseClone() as MvcModule; }
