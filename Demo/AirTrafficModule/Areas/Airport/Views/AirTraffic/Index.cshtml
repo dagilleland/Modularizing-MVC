@@ -3,10 +3,10 @@
 
 <h1>Air Traffic Controller</h1>
 
-<img src="~/Content/Images/Airport/headset.png" class="pull-right col-md-2 img-responsive img-thumbnail" />
+<img src="~/Content/Images/Airport/headset.png" class="pull-left col-md-2 img-responsive img-thumbnail" />
 
 <div>
-    @if(Model != null)
+    @if (Model != null)
     {
         <text>Flight @Model.FlightNumber, you are cleared for @Model.Reason on runway @Model.Runway.</text>
     }
@@ -15,3 +15,23 @@
         <text>Quiet day today, eh Jim? @ViewBag.Noise</text>
     }
 </div>
+
+<form method="post">
+    <fieldset>
+        <legend>Request Runway Clearance</legend>
+        <label>Flight Number:</label>
+        <input type="number" placeholder="Flight" name="flight" min="5" max="80" step="3" required />
+        <label>Runway:</label>
+        <select name="runway">
+            <option>35</option>
+            <option>17</option>
+            <option>8R</option>
+            <option>26L</option>
+        </select>
+        <label>Purpose:</label>
+        <input type="radio" name="clearance" value="Landing" /> @RunwayClearance.Purpose.Landing.ToString()
+        <input type="radio" name="clearance" value="Takeoff" /> @RunwayClearance.Purpose.Takeoff.ToString()
+        <button type="submit" class="btn btn-primary">Request Clearance</button>
+    </fieldset>
+</form>
+

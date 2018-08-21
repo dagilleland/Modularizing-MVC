@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AirTrafficModule</id>
-    <version>1.0.0.03</version>
+    <version>1.0.0.05</version>
     <title>Air Traffic Demo MVC Module</title>
     <authors>dagilleland</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

@@ -13,6 +13,13 @@
         <a href="/Error/Crash" class="btn btn-warning">Error - Crash</a>
         <a href="/Error/NotFound" class="btn btn-warning">Error - NotFound <b class="badge bg-danger">!</b></a>
         <a href="/Error/Broken/HelpMe" class="btn btn-danger">Broken</a>
+
+        @{ 
+            foreach(var mod in WebApp.MvcApplication.RegisteredMvcModules)
+            {
+                @Html.ActionLink(mod.DefaultLinkText, null, null, new { controller = "App", action = "Proxy", area = "Hub", nameOfArea = mod.DefaultArea, nameOfAction = mod.DefaultAction, nameOfController = mod.DefaultController }, new { title = "Opens the link with the proxy controller", @class = "btn btn-success" })
+            }
+        }
     </p>
 </div>
 
