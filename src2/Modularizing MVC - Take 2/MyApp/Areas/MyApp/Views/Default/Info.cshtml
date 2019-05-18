@@ -1,0 +1,51 @@
+﻿@inherits System.Web.Mvc.WebViewPage<MyApp.Areas.MyApp.Models.RedirectTarget>
+@using System.Web.Mvc.Html
+@{
+    /* Why the @inherits ??
+     * Because we are 
+     * Long answer:
+     *
+     * Also see
+     * https://blog.jsinh.in/asp-net-mvc-the-view-must-derive-from-webviewpage-or-webviewpagetmodel/#.W8mOcPZMG70
+     *
+     * xyz.cshtml - @inherits System.Web.Mvc.WebViewPage
+     * _ViewStart.cshtml - @inherits System.Web.Mvc.ViewStartPage
+     */
+    ViewBag.Title = "MyApp Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>RedirectTarget</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Action)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Action)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Controller)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Controller)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,24 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@{
+    /* Why the @inherits ??
+     * Short answer: see
+     * https://blogs.msdn.microsoft.com/gaurav/2014/01/14/the-view-must-derive-from-webviewpage-or-webviewpagetmodel-the-view-at-viewshomeindex-cshtml-must-derive-from-webviewpage-or-webviewpagetmodel/
+     * Long answer: 
+     * 
+     * Also see
+     * https://blog.jsinh.in/asp-net-mvc-the-view-must-derive-from-webviewpage-or-webviewpagetmodel/#.W8mOcPZMG70
+     * 
+     * xyz.cshtml - @inherits System.Web.Mvc.WebViewPage
+     * _ViewStart.cshtml - @inherits System.Web.Mvc.ViewStartPage
+     */
+    ViewBag.Title = "MyApp Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MyApp's Default Controller - Index Page</h2>
+
+<p>This MVC web application was set up as an <b>Empty</b> project template with the <b>MVC</b> checkbox checked. It's views and images are set up as <i>embedded resources</i>, and the loading of those resources is being handled by virtual path providers.</p>
+<p>A more full-featured embedded resource virtual path provider can be found <a href="https://github.com/mcintyre321/EmbeddedResourceVirtualPathProvider" target="_blank">here</a>, and you can get it via NuGet as <code>EmbeddedResourceVirtualPathProvider</code>.</p>
+<p><img src="~/Areas/MyApp/Images/ProjectTemplate.png" runat="server" /></p>
+
+<a class="btn btn-primary" href="https://weblogs.asp.net/ricardoperes/loading-asp-net-mvc-controllers-and-views-from-an-assembly" target="_blank">Credits to This Code</a>
