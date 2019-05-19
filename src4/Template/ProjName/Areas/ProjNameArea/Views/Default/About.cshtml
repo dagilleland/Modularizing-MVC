@@ -1,0 +1,71 @@
+﻿@using System.Web.Mvc.Html
+
+@inherits System.Web.Mvc.WebViewPage
+@{
+    ViewBag.Title = "About";
+}
+
+<main>
+    <img src="@ViewBag.BaseRef/Content/Images/icons8-info-50.png" />
+    <h1>About</h1>
+
+    <p>This solution consists of two ASP.Net Web Application projects: A <b>Host</b> project, which is a standard MVC 5 project with OWIN, and an <b>MVC Module</b> project, which is a trimmed-down MVC 5 project that uses OWIN and the <a href="https://github.com/mcintyre321/EmbeddedResourceVirtualPathProvider" target="_blank">EmbeddedResourceVirtualPathProvider</a>. The MVC Module project is referenced by the <b>Host</b> project.</p>
+
+    <h2>Embedding Resources</h2>
+
+    <div>
+        <img src="@ViewBag.BaseRef/Content/Images/vs-file-properties-build-action.png" style="float:right; margin-left:14px;" />
+
+        <p>Any time you add a <dfn title="A Razor page or partial view">view</dfn> or an <dfn title="JavaScript, Stylesheets, or images">asset</dfn>, you must change its file property's build action to "Embedded Resource".</p>
+
+        <p>In the case of views, you cannot rely on the typical behind-the-scenes inheritance that occurs. Instead, you should explicitly declare what class your view inherits from. It's also a good idea to add any @@using statements for other namespaces you need. Here's an example from this page's .cshtml.</p>
+
+        <pre>@@using System.Web.Mvc.Html
+
+@@inherits System.Web.Mvc.ViewStartPage</pre>
+
+        <p>If your view uses a model, then you must inherit from the generic <code>ViewStartPage&lt;T&gt;</code> class. For example, if your model class was called <code>DemoModule</code>, the first few lines of your .cshtml page would be as follows.</p>
+
+        <pre>@@using System.Web.Mvc.Html
+@@using $safeprojectname$.Areas.$safeprojectname$Area.Models
+
+@@inherits System.Web.Mvc.ViewStartPage&lt;DemoModule&gt;</pre>
+
+        <p>In this sample module, the <code>@Html.ActionLink("Index.cshtml", "Index")</code> uses a list of <code>DemoModule</code> objects, so the first few lines are as follows.</p>
+
+        <pre>@@using System.Web.Mvc.Html
+@@using $safeprojectname$.Areas.$safeprojectname$Area.Models
+
+@@inherits System.Web.Mvc.WebViewPage&lt;IEnumerable&lt;DemoModule&gt;&gt;</pre>
+
+        <p>You should also note that the <mark>_ViewStart.cshtml</mark> Razor page has a slightly different base class.</p>
+
+        <pre>@@inherits System.Web.Mvc.ViewStartPage</pre>
+
+    </div>
+
+    <h2>Testing and Debugging</h2>
+
+    <p>Any time you want to view the effect of the changes you make in this MVC project, you should compile the project. This is because of the modular nature of the project and that it is referenced by the Host web project. It is especially true for changes you make to the embedded items (.cshtml/.js/.css/.png/.jpg).</p>
+
+    <p>Debugging C# code in your MVC project works as expected: Just set a break-point and it will pause when run in debug mode. This does <b>not</b> work for any C# code inside your Razor views, however. Once those views are built as embedded resources, Visual Studio cannot identify the breakpoints you place in those Razor files.</p>
+
+    <p>If you have a lot of C# code in your Razor view, you might want to consider placing the code in a custom base class for your Razor view. A @Html.ActionLink("Sample", "SampleBase") is included to see how you can make this work.</p>
+
+    <h2>Component Startup</h2>
+
+    <p>This project template uses an <b>OWIN</b>-based <code>Startup</code> class, as does the host project. The reason for this is to allow your MVC module to stand as independent as possible from the host application regarding the setup of any middleware or regarding any other module-specific initialization.</p>
+
+    <p>For example, the host "<u>@ViewBag.HostName</u>" called this module's startup using the extension method in the <mark>Startup.cs</mark> file (which is how I was able to display the host's name).</p>
+
+    <footer>
+        Images by <a href="https://icons8.com/" target="_blank">
+            Icons8
+            <img src="@ViewBag.BaseRef/Content/Images/icons8-50.png" />
+
+        </a>
+    </footer>
+</main>
+
+<link href="@ViewBag.BaseRef/Content/Styles/Layout.css" rel="stylesheet" />
+<script src="@ViewBag.BaseRef/Content/Scripts/Demo.js"></script>

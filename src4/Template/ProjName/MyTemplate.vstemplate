@@ -1,0 +1,72 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>$safeprojectname$</Name>
+    <Description>MVC 5 Component Module Project</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>$safeprojectname$</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.png</Icon>
+    <Hidden>true</Hidden>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$safeprojectname$.csproj" File="$safeprojectname$.csproj" ReplaceParameters="true">
+      <Folder Name="App_Start" TargetFolderName="App_Start">
+        <ProjectItem ReplaceParameters="true" TargetFileName="EmbeddedResourceVirtualPathProviderStart.cs">EmbeddedResourceVirtualPathProviderStart.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Areas" TargetFolderName="Areas">
+        <Folder Name="$safeprojectname$Area" TargetFolderName="$safeprojectname$Area">
+          <Folder Name="Content" TargetFolderName="Content">
+            <Folder Name="Images" TargetFolderName="Images">
+              <ProjectItem ReplaceParameters="false" TargetFileName="icons8-50.png">icons8-50.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="icons8-info-50.png">icons8-info-50.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="icons8-landscape-100.png">icons8-landscape-100.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="icons8-landscape-500.png">icons8-landscape-500.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="icons8-puzzle-50.png">icons8-puzzle-50.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="icons8-refresh-50.png">icons8-refresh-50.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="icons8-synchronize-50.png">icons8-synchronize-50.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="icons8-upload-to-the-cloud-50.png">icons8-upload-to-the-cloud-50.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="vs-file-properties-build-action.png">vs-file-properties-build-action.png</ProjectItem>
+            </Folder>
+            <Folder Name="Scripts" TargetFolderName="Scripts">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Demo.js">Demo.js</ProjectItem>
+            </Folder>
+            <Folder Name="Styles" TargetFolderName="Styles">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Layout.css">Layout.css</ProjectItem>
+            </Folder>
+          </Folder>
+          <Folder Name="Controllers" TargetFolderName="Controllers">
+            <ProjectItem ReplaceParameters="true" TargetFileName="DefaultController.cs">DefaultController.cs</ProjectItem>
+          </Folder>
+          <Folder Name="Models" TargetFolderName="Models">
+            <ProjectItem ReplaceParameters="true" TargetFileName="DemoModule.cs">DemoModule.cs</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$AreaAreaRegistration.cs">$safeprojectname$AreaAreaRegistration.cs</ProjectItem>
+          <Folder Name="Views" TargetFolderName="Views">
+            <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
+            <Folder Name="Default" TargetFolderName="Default">
+              <ProjectItem ReplaceParameters="true" TargetFileName="About.cshtml">About.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SampleBase.cs">SampleBase.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SampleBase.cshtml">SampleBase.cshtml</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>
+          </Folder>
+        </Folder>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$Startup.cs">$safeprojectname$Startup.cs</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.Debug.config">Web.Debug.config</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.Release.config">Web.Release.config</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
