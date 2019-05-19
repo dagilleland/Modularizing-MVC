@@ -1,0 +1,40 @@
+﻿/* Styles for your project */
+main {
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-gap: 7px;
+}
+
+    main > * {
+        grid-column: span 2;
+    }
+
+    main > img:first-child {
+        grid-column: 1;
+        grid-row: 1;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+        main > img:first-child + h1 {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+    main > footer {
+        grid-column: span 2;
+        font-weight: bold;
+        font-size: smaller;
+        font-style: italic;
+        padding: 10px;
+        border: lightgray solid 1px;
+        background: linear-gradient(0deg, #ffffff 0%, rgba(139, 183, 240, 0.50) 100%);
+    }
+
+        main > footer img {
+            width: 24px;
+        }
+
+dfn {
+    font-weight: bold;
+}

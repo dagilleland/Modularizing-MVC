@@ -1,0 +1,30 @@
+﻿@using System.Web.Mvc.Html
+@using ProjName.Areas.ProjNameArea.Models
+
+@inherits System.Web.Mvc.WebViewPage<IEnumerable<DemoModule>>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<main>
+    <img src="~/Areas/ProjNameArea/Content/Images/icons8-puzzle-50.png" />
+    <h1>MVC Module Default Page</h1>
+
+    <blockquote>There are @Model.Count() items in the Model for this page.</blockquote>
+
+    <p>This project is a template for creating and testing modular MVC components. At the heart of this is the <a href="https://github.com/mcintyre321/EmbeddedResourceVirtualPathProvider" target="_blank">EmbeddedResourceVirtualPathProvider</a>, which allows views (.cshtml) and assets (.js/.css/.png/.jpg) to be compiled as embedded resources in the project.</p>
+
+    <p>For details on using and modifying this project, see the @Html.ActionLink("About", "About") page.</p>
+
+    <footer>
+        Images by <a href="https://icons8.com/" target="_blank">
+            Icons8
+            <img src="@ViewBag.BaseRef/Content/Images/icons8-50.png" />
+        </a>
+    </footer>
+</main>
+
+<link href="@ViewBag.BaseRef/Content/Styles/Layout.css" rel="stylesheet" />
+<script src="@ViewBag.BaseRef/Content/Scripts/Demo.js"></script>
+
