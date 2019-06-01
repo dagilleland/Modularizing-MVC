@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About", "About", "{E1C862ED
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "dbProjName", "dbProjName\dbProjName.sqlproj", "{2962FB7F-FCAB-453F-917B-988C8FA7F0B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,12 @@ Global
 		{E79DF22C-274D-4DBE-B524-7442A00447D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E79DF22C-274D-4DBE-B524-7442A00447D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E79DF22C-274D-4DBE-B524-7442A00447D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2962FB7F-FCAB-453F-917B-988C8FA7F0B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2962FB7F-FCAB-453F-917B-988C8FA7F0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2962FB7F-FCAB-453F-917B-988C8FA7F0B1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2962FB7F-FCAB-453F-917B-988C8FA7F0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2962FB7F-FCAB-453F-917B-988C8FA7F0B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2962FB7F-FCAB-453F-917B-988C8FA7F0B1}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

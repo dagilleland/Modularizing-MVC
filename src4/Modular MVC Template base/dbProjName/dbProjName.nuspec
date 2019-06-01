@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>dbProjName</id>
+    <version>0.5.0.1</version>
+    <description>Nuspec description</description>
+    <authors>Dan Gilleland</authors>
+    <owners>Dan Gilleland</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes>Initial alpha release.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+  </metadata>
+  <files>
+    <file src="bin\Debug\dbProjName.dacpac" target="content\App_Data\dbProjName.dacpac" />
+  </files>
+</package>

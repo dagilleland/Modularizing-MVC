@@ -131,6 +131,7 @@
     <EmbeddedResource Include="Areas\ProjNameArea\Views\_ViewStart.cshtml" />
     <EmbeddedResource Include="Areas\ProjNameArea\Views\Default\Index.cshtml" />
     <EmbeddedResource Include="Areas\ProjNameArea\Views\Default\SampleBase.cshtml" />
+    <Content Include="App_Data\dbProjName.dacpac" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

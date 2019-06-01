@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjName_HostApp.Backend;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,11 +14,22 @@ namespace ProjName_HostApp.Controllers
             return View();
         }
 
+        private List<DacPacFileInfo> PrepDbInfo()
+        {
+            List<DacPacFileInfo> result = new List<DacPacFileInfo>();
+            ViewBag.IsInstalled = DatabaseManager.CheckDatabaseConnection();
+            if (!ViewBag.IsInstalled)
+            {
+                result = DatabaseManager.ListDacPacs(Server.MapPath("~/App_Data/"));
+            }
+            return result;
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
-            return View();
+            
+            return View(PrepDbInfo());
         }
 
         public ActionResult Contact()

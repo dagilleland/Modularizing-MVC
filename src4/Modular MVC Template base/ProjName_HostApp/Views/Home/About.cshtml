@@ -1,7 +1,33 @@
-﻿@{
+﻿@using ProjName_HostApp.Backend
+@model List<DacPacFileInfo>
+@{
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+
+@if (ViewBag.IsInstalled)
+{
+    <p>Database is installed</p>
+}
+else
+{
+    foreach(var item in this.Model)
+    {
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Version.ToString()</td>
+                <td>@item.Description</td>
+            </tr>
+        </table>
+    }
+}
+
