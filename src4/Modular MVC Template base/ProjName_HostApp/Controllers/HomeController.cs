@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace ProjName_HostApp.Controllers
 {
@@ -34,16 +35,25 @@ namespace ProjName_HostApp.Controllers
 
         public ActionResult InstallDb()
         {
-            DatabaseManager.PublishDacPacs(Server.MapPath("~/App_Data/"));
+            DatabaseManager.PublishDacPacs(App_Data_Path);
 
             return View(nameof(About), PrepDbInfo());
         }
-
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            App_Data_Path = Server.MapPath("~/App_Data/");
+        }
+        private string App_Data_Path;
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
-            return View();
+            var apps = DatabaseManager.ReadInstallationLog(App_Data_Path);
+            if (apps.Count == 0)
+            {
+                DatabaseManager.RegisterHostApp(App_Data_Path, new MvcActionLink { Controller = "Home", LinkText = "Host Application" });
+            }
+            return View(apps);
         }
     }
 }

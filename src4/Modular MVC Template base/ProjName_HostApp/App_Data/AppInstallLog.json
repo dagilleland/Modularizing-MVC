@@ -1,0 +1,18 @@
+{
+  "appRegistration": [
+    {
+      "friendlyName": "Host MVC Application",
+      "userInterface": {
+        "assemblyGuid": "00000000-0000-0000-0000-000000000000",
+        "fullyQualifiedAssemblyName": "JsonFlatFileDataStore, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null"
+      },
+      "dacPacDependencies": [],
+      "appHomePage": {
+        "area": "",
+        "controller": "Home",
+        "action": "Index",
+        "linkText": "Host Application"
+      }
+    }
+  ]
+}

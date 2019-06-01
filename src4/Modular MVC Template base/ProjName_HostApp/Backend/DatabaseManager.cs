@@ -1,4 +1,5 @@
-﻿using ProjName_HostApp.Backend.DAL;
+﻿using JsonFlatFileDataStore;
+using ProjName_HostApp.Backend.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,9 +10,65 @@ using System.Web;
 
 namespace ProjName_HostApp.Backend
 {
+    #region MVC Application Registration
+    public class AppRegistration
+    {
+        public string FriendlyName { get; set; }
+        public UIAssembly UserInterface { get; set; }
+        public IEnumerable<DacPacInfo> DacPacDependencies { get; set; }
+            = new HashSet<DacPacInfo>();
+        public MvcActionLink AppHomePage { get; set; }
+    }
+    public class MvcActionLink
+    {
+        public string Area { get; set; } = string.Empty;
+        public string Controller { get; set; } = "Home";
+        public string Action { get; set; } = "Index";
+        public string LinkText { get; set; } = "Home";
+    }
+    public class UIAssembly
+    {
+        public Guid AssemblyGuid { get; set; }
+        public string FullyQualifiedAssemblyName { get; set; }
+    }
+    public class DacPacInfo
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Version Version { get; set; }
+    }
+    #endregion
     public static class DatabaseManager
     {
-
+        public static void RegisterHostApp(string mapPath, MvcActionLink homePage)
+        {
+            using (var store = new DataStore(Path.Combine(mapPath, "AppInstallLog.json")))
+            {
+                var installations = store.GetCollection<AppRegistration>();
+                var hostGuidAttribute = installations.GetType().Assembly.GetCustomAttributes(true).OfType<System.Runtime.InteropServices.GuidAttribute>().FirstOrDefault();
+                Guid hostGuid = hostGuidAttribute == null?Guid.Empty:Guid.Parse(hostGuidAttribute.Value);
+                var assemblyName = installations.GetType().Assembly.FullName;
+                AppRegistration host = new AppRegistration()
+                {
+                    AppHomePage = homePage,
+                    FriendlyName = "Host MVC Application",
+                    UserInterface = new UIAssembly
+                    {
+                        AssemblyGuid = hostGuid,
+                        FullyQualifiedAssemblyName = assemblyName
+                    }
+                };
+                installations.InsertOne(host);
+            }
+        }
+        public static IDocumentCollection<AppRegistration> ReadInstallationLog(string mapPath)
+        {
+            using (var store = new DataStore(Path.Combine(mapPath, "AppInstallLog.json")))
+            {
+                var installations = store.GetCollection<AppRegistration>();
+                return installations;
+            }
+        }
         public static bool CheckDatabaseConnection()
         {
             string connection, database;
@@ -41,7 +98,7 @@ namespace ProjName_HostApp.Backend
         }
         public static void PublishDacPacs(string mapPath)
         {
-            
+
         }
         public static List<DacPacFileInfo> ListDacPacs(string mapPath)
         {
@@ -63,12 +120,8 @@ namespace ProjName_HostApp.Backend
             return results;
         }
     }
-    public class DacPacFileInfo
+    public class DacPacFileInfo : DacPacInfo
     {
         public string FilePath { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public Version Version { get; set; }
-
     }
 }

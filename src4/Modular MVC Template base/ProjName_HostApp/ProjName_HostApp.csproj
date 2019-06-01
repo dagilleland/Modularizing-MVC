@@ -54,6 +54,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="JsonFlatFileDataStore, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JsonFlatFileDataStore.2.2.0\lib\netstandard2.0\JsonFlatFileDataStore.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -156,7 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Backend\DatabaseManager.cs" />
     <Compile Include="Backend\Entities\CrewMember.cs" />
-    <Compile Include="Backend\Entities\MyDbContext.cs" />
+    <Compile Include="Backend\DAL\MyDbContext.cs" />
     <Compile Include="Backend\Entities\Ship.cs" />
     <Compile Include="Backend\Entities\ShipDesign.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -217,7 +220,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Backend\DAL\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
