@@ -39,6 +39,10 @@ namespace ProjName_HostApp.Backend
                 }
             }
         }
+        public static void PublishDacPacs(string mapPath)
+        {
+            
+        }
         public static List<DacPacFileInfo> ListDacPacs(string mapPath)
         {
             var files = Directory.GetFiles(mapPath, "*.dacpac");

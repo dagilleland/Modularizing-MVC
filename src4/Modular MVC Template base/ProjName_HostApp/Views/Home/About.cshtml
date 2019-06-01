@@ -8,12 +8,17 @@
 
 <p>Use this area to provide additional information.</p>
 
-@if (ViewBag.IsInstalled)
-{
-    <p>Database is installed</p>
-}
-else
-{
+<p>
+    @if (ViewBag.IsInstalled)
+    {
+        <text>Database is installed</text>
+    }
+    else
+    {
+        @Html.ActionLink("Install DacPac", "InstallDb", "Home", null, new { @class = "btn btn-primary" })
+    }
+</p>
+@{
     foreach(var item in this.Model)
     {
         <table class="table">

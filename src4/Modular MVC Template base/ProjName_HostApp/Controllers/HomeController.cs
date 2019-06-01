@@ -32,6 +32,13 @@ namespace ProjName_HostApp.Controllers
             return View(PrepDbInfo());
         }
 
+        public ActionResult InstallDb()
+        {
+            DatabaseManager.PublishDacPacs(Server.MapPath("~/App_Data/"));
+
+            return View(nameof(About), PrepDbInfo());
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
