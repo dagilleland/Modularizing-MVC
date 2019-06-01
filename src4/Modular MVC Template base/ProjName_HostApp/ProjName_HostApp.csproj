@@ -226,6 +226,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MvcApplicationComponent.Owin\MvcApplicationComponent.Owin.csproj">
+      <Project>{70614486-564b-4f66-81cf-da25c925b582}</Project>
+      <Name>MvcApplicationComponent.Owin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcApplicationComponent\MvcApplicationComponent.csproj">
+      <Project>{ec59f4ab-2899-47ce-8c31-9f84a4dacda1}</Project>
+      <Name>MvcApplicationComponent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjName\ProjName.csproj">
       <Project>{e79df22c-274d-4dbe-b524-7442a00447d5}</Project>
       <Name>ProjName</Name>

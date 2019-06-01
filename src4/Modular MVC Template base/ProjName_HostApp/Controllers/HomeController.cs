@@ -1,4 +1,5 @@
-﻿using ProjName_HostApp.Backend;
+﻿using MvcApplicationComponent;
+using ProjName_HostApp.Backend;
 using System;
 using System.Collections.Generic;
 using System.Linq;

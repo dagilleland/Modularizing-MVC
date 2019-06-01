@@ -1,4 +1,6 @@
 ﻿using JsonFlatFileDataStore;
+using MvcApplicationComponent;
+using Owin;
 using ProjName_HostApp.Backend.DAL;
 using System;
 using System.Collections.Generic;
@@ -6,38 +8,11 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 
 namespace ProjName_HostApp.Backend
 {
-    #region MVC Application Registration
-    public class AppRegistration
-    {
-        public string FriendlyName { get; set; }
-        public UIAssembly UserInterface { get; set; }
-        public IEnumerable<DacPacInfo> DacPacDependencies { get; set; }
-            = new HashSet<DacPacInfo>();
-        public MvcActionLink AppHomePage { get; set; }
-    }
-    public class MvcActionLink
-    {
-        public string Area { get; set; } = string.Empty;
-        public string Controller { get; set; } = "Home";
-        public string Action { get; set; } = "Index";
-        public string LinkText { get; set; } = "Home";
-    }
-    public class UIAssembly
-    {
-        public Guid AssemblyGuid { get; set; }
-        public string FullyQualifiedAssemblyName { get; set; }
-    }
-    public class DacPacInfo
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public Version Version { get; set; }
-    }
-    #endregion
     public static class DatabaseManager
     {
         public static void RegisterHostApp(string mapPath, MvcActionLink homePage)
