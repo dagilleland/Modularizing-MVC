@@ -1,1 +1,9 @@
 ﻿<h3>Restore Results</h3>
+@using (var form = Html.BeginForm())
+{
+    <label>Backup Suffix:</label>
+    <input type="text" name="restoreSuffix" value="-01" />
+    <input type="submit" value="Restore Database" />
+}
+
+@ViewBag.RestoreResult

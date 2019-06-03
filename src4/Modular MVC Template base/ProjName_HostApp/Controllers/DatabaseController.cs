@@ -38,15 +38,19 @@ namespace ProjName_HostApp.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult Backup(string dbName)
+        public ActionResult Backup(string backupSuffix)
         {
-            // TODO: Backup the identified database
+            if(!string.IsNullOrWhiteSpace(backupSuffix))
+                new DbMasterContext().Backup(backupSuffix);
+            ViewBag.BackupResult = backupSuffix;
             return PartialView();
         }
         [ChildActionOnly]
-        public ActionResult Restore(string dbName)
+        public ActionResult Restore(string restoreSuffix)
         {
-            // TODO: Restore the identified database
+            if (!string.IsNullOrWhiteSpace(restoreSuffix))
+                new DbMasterContext().Restore(restoreSuffix);
+            ViewBag.RestoreResult = restoreSuffix;
             return PartialView();
         }
         #endregion
@@ -61,7 +65,7 @@ namespace ProjName_HostApp.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult PublicDacPac(string dbName, string dacPacName)
+        public ActionResult PublishDacPac(string deployAs)
         {
             // TODO: 
             return PartialView();

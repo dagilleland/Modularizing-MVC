@@ -162,6 +162,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Backend\DatabaseManager.cs" />
     <Compile Include="Backend\DbMasterContext.cs" />
+    <Compile Include="Backend\DbScripts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbScripts.resx</DependentUpon>
+    </Compile>
     <Compile Include="Backend\Entities\CrewMember.cs" />
     <Compile Include="Backend\DAL\MyDbContext.cs" />
     <Compile Include="Backend\Entities\Ship.cs" />
@@ -247,6 +252,12 @@
       <Project>{e79df22c-274d-4dbe-b524-7442a00447d5}</Project>
       <Name>ProjName</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Backend\DbScripts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DbScripts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

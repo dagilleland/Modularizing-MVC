@@ -23,6 +23,7 @@ namespace ProjName_HostApp.Backend
     public class DbMasterContext : DbContext
     {
         private readonly string ConnectionStringName;
+        public readonly DatabaseConnection DatabaseConnection;
         public DbMasterContext() : base("name=DefaultConnection")
         {
             ConnectionStringName = "DefaultConnection";
@@ -38,8 +39,6 @@ namespace ProjName_HostApp.Backend
             };
         }
 
-        public readonly DatabaseConnection DatabaseConnection;
-        //=> new DatabaseConnection { ConnectionStringName = ConnectionStringName, DataSource = Database.Connection.DataSource, InitialCatalog = Database.Connection.Database, ServerVersion = Database.Connection.ServerVersion };
         public bool DatabaseExists => DatabaseConnection.DatabaseExists;
         public bool HasBackupRights { get; private set; }
         public bool HasRestoreRights { get; private set; }
@@ -53,17 +52,30 @@ namespace ProjName_HostApp.Backend
             if (!DatabaseExists) throw new Exception("Database does not exist");
             new DbContext(ConnectionStringName).Database.Delete();
         }
-        public string Backup()
+        public string Backup(string suffix)
         {
-            throw new NotImplementedException();
+            if (suffix == null) suffix = string.Empty;
+            var db = new DbContext(ConnectionStringName);
+            string dbname = db.Database.Connection.Database;
+            string sqlCommand = $@"BACKUP DATABASE [{dbname}] TO  DISK = N'C:\Backup\{dbname}{suffix}.bak' WITH NOFORMAT, NOINIT,  SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
+            //string sqlCommand = $@"BACKUP DATABASE [{dbname}] TO  DISK = N'C:\Backup\' WITH NOFORMAT, NOINIT,  NAME = N'{dbname}{suffix}.bak', SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
+            db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, sqlCommand);
+            return dbname + suffix;
         }
         public IEnumerable<string> ListBackups()
         {
             throw new NotImplementedException();
         }
-        public void Restore(string backupName)
+        public void Restore(string suffix)
         {
-            throw new NotImplementedException();
+            var connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
+            var builder = new SqlConnectionStringBuilder(connectionString);
+            builder.InitialCatalog = "master";
+            if (suffix == null) suffix = string.Empty;
+            var db = new DbContext(builder.ConnectionString);
+            string dbname = DatabaseConnection.InitialCatalog;
+            string sqlCommand = $@"RESTORE DATABASE [{dbname}] FROM  DISK = N'C:\Backup\{dbname}{suffix}.bak'";
+            db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, sqlCommand);
         }
 
     }
