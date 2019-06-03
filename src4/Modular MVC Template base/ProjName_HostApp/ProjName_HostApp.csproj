@@ -232,6 +232,8 @@
     <Content Include="Views\Database\Backup.cshtml" />
     <Content Include="Views\Database\Restore.cshtml" />
     <Content Include="Views\Database\ListDacPacFiles.cshtml" />
+    <Content Include="Views\Database\DeployDacPac.cshtml" />
+    <Content Include="Views\Database\GetDeploymentPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

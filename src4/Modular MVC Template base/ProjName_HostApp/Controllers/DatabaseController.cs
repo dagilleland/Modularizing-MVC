@@ -1,6 +1,7 @@
 ﻿using ProjName_HostApp.Backend;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -65,10 +66,29 @@ namespace ProjName_HostApp.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult PublishDacPac(string deployAs)
+        public ActionResult DeployDacPac(string dacPacName)
         {
             // TODO: 
-            return PartialView();
+            List<string> results = new List<string>();
+            if (!string.IsNullOrWhiteSpace(dacPacName))
+            {
+                var info = new DbMasterContext().DatabaseConnection;
+                results = new DacPacManager(App_Data_Path).ProcessDacPac(ConfigurationManager.ConnectionStrings[info.ConnectionStringName].ConnectionString, info.InitialCatalog, dacPacName);
+                    }
+            return PartialView(results);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetDeploymentPlan(string dacPac)
+        {
+            // TODO: 
+            List<string> results = new List<string>();
+            if (!string.IsNullOrWhiteSpace(dacPac))
+            {
+                var info = new DbMasterContext().DatabaseConnection;
+                results = new DacPacManager(App_Data_Path).GetDeploymentPlan(ConfigurationManager.ConnectionStrings[info.ConnectionStringName].ConnectionString, info.InitialCatalog, dacPac);
+            }
+            return PartialView(results);
         }
         #endregion
     }

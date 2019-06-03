@@ -1,0 +1,15 @@
+﻿@model List<string>
+<h3>Deploy DacPac</h3>
+
+@using (var form = Html.BeginForm())
+{
+    <input type="text" name="dacPacName" value="dbProjName.dacpac" />
+    <input type="Submit" value="Deploy DacPac" />
+}
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item</li>
+    }
+</ul>
