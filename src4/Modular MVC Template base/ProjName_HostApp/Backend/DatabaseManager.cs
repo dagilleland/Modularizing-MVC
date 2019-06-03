@@ -15,6 +15,9 @@ namespace ProjName_HostApp.Backend
 {
     public static class DatabaseManager
     {
+        public static void BackupDatabase()
+        { }
+
         public static void RegisterHostApp(string mapPath, MvcActionLink homePage)
         {
             using (var store = new DataStore(Path.Combine(mapPath, "AppInstallLog.json")))

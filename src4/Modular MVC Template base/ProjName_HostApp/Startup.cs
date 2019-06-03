@@ -16,7 +16,12 @@ namespace HostApp
         public void Configuration(IAppBuilder app)
         {
             // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=316888
+
+            // Register the Host Component
             app.RegisterMvcComponents(this.GetType().Assembly);
+            // Register additional components
+            // TODO: List all loaded assemblies, except the host assembly
+            app.RegisterMvcComponents();
             app.ConfigureProjName(new Options
             {
                 NameOfHostingApp = "My ASP.NET Application"

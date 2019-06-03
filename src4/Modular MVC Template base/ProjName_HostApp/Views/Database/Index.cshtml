@@ -1,0 +1,70 @@
+﻿@using ProjName_HostApp.Backend
+@using Humanizer
+@model DatabaseConnection
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Database and DacPac Jobs</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Database Info</h3>
+        @if (!Model.DatabaseExists)
+        {
+            using (var form = Html.BeginForm("Create", "Database"))
+            {
+                <input type="submit" value="Create Database" />
+            }
+        }
+        else
+        {
+            using (var form = Html.BeginForm("Delete", "Database"))
+            {
+                <input type="submit" value="Delete Database" onclick="return confirm('Are you sure you want to delete this database?!')" />
+            }
+        }
+        <table class="table">
+            <tr>
+                <td>Connection String Name</td>
+                <th>@Model.ConnectionStringName</th>
+            </tr>
+            <tr>
+                <td>Data Source</td>
+                <th>@Model.DataSource</th>
+            </tr>
+            <tr>
+                <td>Authentication Method</td>
+                <th>@Model.AuthenticationMethod</th>
+            </tr>
+            <tr>
+                <td>Initial Catalog</td>
+                <th>@Model.InitialCatalog</th>
+            </tr>
+            <tr>
+                <td>Database Exists</td>
+                <th>@Model.DatabaseExists</th>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        @Html.Action("Backup")
+    </div>
+    <div class="col-md-4">
+        @Html.Action("Restore")
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @Html.Action("ListDacPacFiles")
+    </div>
+    <div class="col-md-4">
+        @*@Html.Action("Backup")*@
+    </div>
+    <div class="col-md-4">
+        @*@Html.Action("Restore")*@
+    </div>
+</div>

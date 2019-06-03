@@ -1,0 +1,22 @@
+﻿@using ProjName_HostApp.Backend
+@model List<DacPacFileInfo>
+
+<h3>List DacPac Files</h3>
+
+@{
+    foreach (var item in this.Model)
+    {
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Version.ToString()</td>
+                <td>@item.Description</td>
+            </tr>
+        </table>
+    }
+}

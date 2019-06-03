@@ -54,6 +54,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Humanizer, Version=2.6.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.6.2\lib\netstandard2.0\Humanizer.dll</HintPath>
+    </Reference>
     <Reference Include="JsonFlatFileDataStore, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JsonFlatFileDataStore.2.2.0\lib\netstandard2.0\JsonFlatFileDataStore.dll</HintPath>
     </Reference>
@@ -158,10 +161,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Backend\DatabaseManager.cs" />
+    <Compile Include="Backend\DbMasterContext.cs" />
     <Compile Include="Backend\Entities\CrewMember.cs" />
     <Compile Include="Backend\DAL\MyDbContext.cs" />
     <Compile Include="Backend\Entities\Ship.cs" />
     <Compile Include="Backend\Entities\ShipDesign.cs" />
+    <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,6 +223,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Database\Index.cshtml" />
+    <Content Include="Views\Database\Backup.cshtml" />
+    <Content Include="Views\Database\Restore.cshtml" />
+    <Content Include="Views\Database\ListDacPacFiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
